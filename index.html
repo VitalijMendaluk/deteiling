@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DetailingExpert — Преміальний догляд за вашим автомобілем</title>
+<meta name="description" content="DetailingExpert — преміальний детейлінг, який зберігає вигляд, цінність та відчуття нового автомобіля на роки. Кераміка, PPF, полірування, хімчистка. Понад 1000 задоволених клієнтів.">
+<meta property="og:title" content="DetailingExpert — Ваш автомобіль заслуговує виглядати як новий щодня">
+<meta property="og:description" content="Преміальний детейлінг, що захищає інвестицію та повертає автомобілю відчуття новизни на довгі роки.">
+<meta property="og:image" content="images/1.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "DetailingExpert",
+  "description": "Преміальний детейлінг-сервіс. Кераміка, PPF, полірування, хімчистка.",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "1000"
+  }
+}
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #080808;
+  --deep: #0d0d0d;
+  --surface: #111111;
+  --card: #161616;
+  --border: rgba(255,255,255,0.07);
+  --border-light: rgba(255,255,255,0.12);
+  --white: #ffffff;
+  --off-white: #e8e6e1;
+  --cream: #f0ede8;
+  --gold: #c8a96e;
+  --gold-light: #d4bc8a;
+  --gold-dark: #a8894e;
+  --text-primary: #f0ede8;
+  --text-secondary: rgba(240,237,232,0.55);
+  --text-muted: rgba(240,237,232,0.35);
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --glass-hover: rgba(255,255,255,0.07);
+  --radius: 2px;
+  --radius-lg: 4px;
+  --transition: cubic-bezier(0.16, 1, 0.3, 1);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--black);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--transition), height 0.3s var(--transition), background 0.3s;
+  mix-blend-mode: normal;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(200, 169, 110, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s var(--transition), height 0.5s var(--transition), border-color 0.3s;
+}
+body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 12px; height: 12px; }
+body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 56px; height: 56px; border-color: rgba(200,169,110,0.7); }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); }
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.4;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; }
+h1 { font-size: clamp(3.2rem, 7vw, 7.5rem); }
+h2 { font-size: clamp(2.4rem, 5vw, 5rem); }
+h3 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); }
+p { line-height: 1.75; }
+
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(8,8,8,0.6);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+  transition: padding 0.4s var(--transition);
+}
+nav.scrolled { padding: 14px 60px; }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 26px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: none;
+  transition: background 0.3s, transform 0.3s var(--transition);
+}
+.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* SECTION BASE */
+section { position: relative; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+
+/* REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--transition), transform 0.9s var(--transition);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.9s var(--transition), transform 0.9s var(--transition); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.9s var(--transition), transform 0.9s var(--transition); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 0.9s var(--transition), transform 0.9s var(--transition); }
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+
+/* ============================================
+   BLOCK 1: HERO
+============================================ */
+#hero {
+  height: 100svh;
+  min-height: 700px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  transform: scale(1.05);
+  transition: opacity 1.2s ease, transform 8s ease;
+}
+.hero-bg img.loaded { opacity: 0.55; transform: scale(1); }
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,8,8,0.3) 0%,
+    rgba(8,8,8,0.1) 30%,
+    rgba(8,8,8,0.4) 65%,
+    rgba(8,8,8,0.95) 100%
+  );
+}
+.hero-gradient-left {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(8,8,8,0.7) 0%, transparent 60%);
+}
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  padding: 0 60px;
+  margin-top: 80px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s 0.3s var(--transition) forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--gold);
+}
+#hero h1 {
+  font-style: italic;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeSlideUp 0.9s 0.5s var(--transition) forwards;
+}
+#hero h1 em { font-style: normal; color: var(--gold-light); }
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeSlideUp 0.9s 0.7s var(--transition) forwards;
+}
+.hero-checkmarks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: fadeSlideUp 0.9s 0.85s var(--transition) forwards;
+}
+.hero-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+.hero-check svg { color: var(--gold); flex-shrink: 0; }
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeSlideUp 0.9s 1s var(--transition) forwards;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 40px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s var(--transition), box-shadow 0.4s;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-100%);
+  transition: transform 0.5s var(--transition);
+}
+.btn-primary:hover::after { transform: translateX(0); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(200,169,110,0.3); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 40px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--border-light);
+  cursor: none;
+  transition: border-color 0.3s, color 0.3s, transform 0.4s var(--transition);
+  backdrop-filter: blur(12px);
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* Floating rating card */
+.hero-rating {
+  position: absolute;
+  bottom: 48px;
+  right: 60px;
+  z-index: 20;
+  padding: 18px 24px;
+  background: rgba(13,13,13,0.65);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  min-width: 180px;
+  opacity: 0;
+  animation: fadeSlideUp 0.9s 1.2s var(--transition) forwards;
+}
+.hero-rating-stars { display: flex; gap: 3px; margin-bottom: 6px; }
+.hero-rating-stars svg { color: var(--gold); }
+.hero-rating-score {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.hero-rating-label { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 4px; }
+
+/* Stats bar */
+.hero-stats {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  animation: fadeUp 0.9s 1.3s var(--transition) forwards;
+}
+.hero-stat {
+  padding: 28px 40px;
+  border-right: 1px solid var(--border);
+  background: rgba(8,8,8,0.75);
+  backdrop-filter: blur(20px);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.hero-stat-num span { color: var(--gold); }
+.hero-stat-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 6px; }
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   BLOCK 2: WHY US
+============================================ */
+#why {
+  padding: 160px 0;
+  background: var(--deep);
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--gold);
+}
+.section-title { color: var(--text-primary); max-width: 640px; }
+.section-title em { font-style: italic; color: var(--gold-light); }
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin-top: 20px;
+  line-height: 1.8;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 80px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.why-card {
+  background: var(--surface);
+  padding: 52px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+.why-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--transition);
+}
+.why-card:hover::before { transform: scaleX(1); }
+.why-card:hover { background: var(--card); }
+.why-icon {
+  width: 56px; height: 56px;
+  margin-bottom: 32px;
+  color: var(--gold);
+  opacity: 0.9;
+}
+.why-card h3 {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+.why-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ============================================
+   BLOCK 3: SERVICES
+============================================ */
+#services {
+  padding: 160px 0;
+  background: var(--black);
+}
+.services-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.service-card {
+  background: var(--surface);
+  overflow: hidden;
+  position: relative;
+  cursor: none;
+  transition: background 0.4s;
+}
+.service-card-img {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+}
+.service-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--transition);
+  filter: brightness(0.75) saturate(0.8);
+}
+.service-card:hover .service-card-img img { transform: scale(1.06); filter: brightness(0.9) saturate(1); }
+.service-card-body { padding: 36px 32px; }
+.service-num {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.service-card h3 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.service-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  cursor: none;
+  transition: gap 0.3s;
+}
+.service-link:hover { gap: 14px; }
+
+/* ============================================
+   BLOCK 4: PORTFOLIO
+============================================ */
+#portfolio {
+  padding: 160px 0;
+  background: var(--deep);
+}
+.portfolio-header { margin-bottom: 72px; }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  background: var(--surface);
+}
+.portfolio-item-inner {
+  position: relative;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+}
+.portfolio-item-inner img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--transition);
+  filter: brightness(0.8) saturate(0.85);
+}
+.portfolio-item:hover .portfolio-item-inner img { transform: scale(1.04); filter: brightness(1) saturate(1); }
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+}
+.portfolio-item:hover .portfolio-overlay { opacity: 1; }
+.portfolio-overlay-content { }
+.portfolio-overlay h4 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.portfolio-overlay p { font-size: 0.78rem; color: var(--text-secondary); }
+.portfolio-badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  padding: 5px 12px;
+  background: rgba(8,8,8,0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.portfolio-expand {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  background: rgba(200,169,110,0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(200,169,110,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  opacity: 0;
+  cursor: none;
+  transition: opacity 0.3s, background 0.3s;
+}
+.portfolio-item:hover .portfolio-expand { opacity: 1; }
+.portfolio-expand:hover { background: rgba(200,169,110,0.25); }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal-inner {
+  position: relative;
+  max-width: 1000px;
+  width: calc(100% - 80px);
+  transform: scale(0.92);
+  transition: transform 0.4s var(--transition);
+}
+.modal-overlay.active .modal-inner { transform: scale(1); }
+.modal-inner img { width: 100%; height: auto; display: block; }
+.modal-close {
+  position: absolute;
+  top: -48px; right: 0;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
+}
+.modal-close:hover { color: var(--text-primary); }
+.modal-caption {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+.modal-caption-text { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-secondary); }
+
+/* ============================================
+   BLOCK 5: HOW WE WORK
+============================================ */
+#process {
+  padding: 160px 0;
+  background: var(--black);
+}
+.process-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: start;
+  margin-top: 80px;
+}
+.process-steps { display: flex; flex-direction: column; }
+.process-step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 32px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  transition: background 0.3s;
+}
+.process-step:first-child { padding-top: 0; }
+.process-step:last-child { border-bottom: none; }
+.process-step-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--border-light);
+  line-height: 1;
+  transition: color 0.4s;
+}
+.process-step.active .process-step-num { color: var(--gold); }
+.process-step-content { }
+.process-step h3 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.process-step p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; }
+.process-visual {
+  position: sticky;
+  top: 120px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+.process-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75) saturate(0.8);
+}
+.process-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 60%);
+}
+
+/* ============================================
+   BLOCK 6: REVIEWS
+============================================ */
+#reviews {
+  padding: 160px 0;
+  background: var(--deep);
+  overflow: hidden;
+}
+.reviews-track-wrap {
+  position: relative;
+  margin-top: 72px;
+}
+.reviews-track-wrap::before,
+.reviews-track-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 10;
+  pointer-events: none;
+}
+.reviews-track-wrap::before { left: 0; background: linear-gradient(to right, var(--deep), transparent); }
+.reviews-track-wrap::after { right: 0; background: linear-gradient(to left, var(--deep), transparent); }
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  animation: scrollTrack 40s linear infinite;
+  width: max-content;
+}
+.reviews-track:hover { animation-play-state: paused; }
+.review-card {
+  width: 380px;
+  flex-shrink: 0;
+  padding: 44px 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s;
+}
+.review-card:hover { border-color: var(--border-light); }
+.review-card::before {
+  content: '"';
+  position: absolute;
+  top: -10px; right: 24px;
+  font-family: var(--font-display);
+  font-size: 8rem;
+  font-weight: 300;
+  color: rgba(200,169,110,0.07);
+  line-height: 1;
+  pointer-events: none;
+}
+.review-stars { display: flex; gap: 4px; margin-bottom: 24px; }
+.review-stars svg { color: var(--gold); }
+.review-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 32px;
+}
+.review-author { display: flex; align-items: center; gap: 14px; }
+.review-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--card);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--gold);
+}
+.review-name { font-size: 0.9rem; font-weight: 500; color: var(--text-primary); }
+.review-car { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; }
+
+@keyframes scrollTrack {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   BLOCK 7: FINAL CTA
+============================================ */
+#cta {
+  padding: 0;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-bg {
+  position: absolute;
+  inset: 0;
+}
+.cta-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.3) saturate(0.6);
+}
+.cta-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.5) 100%);
+}
+.cta-content {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+  padding: 120px 60px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+.cta-text { }
+.cta-text h2 {
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+.cta-text h2 em { font-style: italic; color: var(--gold-light); }
+.cta-text p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 400px;
+}
+.cta-form-wrap {
+  background: rgba(13,13,13,0.75);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  padding: 52px 48px;
+}
+.cta-form-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.cta-form-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 36px; }
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: none;
+}
+.form-group input::placeholder { color: var(--text-muted); }
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--gold);
+  background: rgba(200,169,110,0.04);
+}
+.form-group select option { background: var(--card); color: var(--text-primary); }
+.form-submit {
+  width: 100%;
+  margin-top: 8px;
+  padding: 17px 32px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, transform 0.4s var(--transition), box-shadow 0.4s;
+}
+.form-submit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-100%);
+  transition: transform 0.5s var(--transition);
+}
+.form-submit:hover::after { transform: translateX(0); }
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(200,169,110,0.3); }
+.form-note {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 16px;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+footer {
+  padding: 60px;
+  border-top: 1px solid var(--border);
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+.footer-logo span { color: var(--gold); }
+.footer-copy { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.06em; }
+.footer-links { display: flex; gap: 32px; }
+.footer-links a {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* ============================================
+   POPUP
+============================================ */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
+  z-index: 8000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+.popup-overlay.active { opacity: 1; pointer-events: all; }
+.popup-card {
+  position: relative;
+  width: calc(100% - 48px);
+  max-width: 520px;
+  background: rgba(13,13,13,0.95);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  padding: 60px 52px;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.5s var(--transition);
+}
+.popup-overlay.active .popup-card { transform: translateY(0) scale(1); }
+.popup-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+}
+.popup-close {
+  position: absolute;
+  top: 20px; right: 24px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s;
+}
+.popup-close:hover { color: var(--text-primary); }
+.popup-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.popup-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+.popup-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.popup-title em { font-style: italic; color: var(--gold-light); }
+.popup-sub { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 36px; }
+.popup .form-group { margin-bottom: 14px; }
+.popup .form-submit { margin-top: 4px; }
+
+/* ============================================
+   THANK YOU MESSAGE
+============================================ */
+.thank-you {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+.thank-you.show { display: block; }
+.thank-you h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+}
+.thank-you p { font-size: 0.9rem; color: var(--text-secondary); }
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 1200px) {
+  .container { padding: 0 40px; }
+  nav { padding: 18px 40px; }
+  .hero-content { padding: 0 40px; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-layout { grid-template-columns: 1fr; gap: 60px; }
+  .process-visual { position: static; aspect-ratio: 16/9; }
+  .cta-content { grid-template-columns: 1fr; gap: 60px; }
+  .hero-stats { display: none; }
+}
+
+@media (max-width: 900px) {
+  .container { padding: 0 24px; }
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 24px; }
+  #hero h1 { font-size: clamp(2.4rem, 8vw, 5rem); }
+  .hero-rating { right: 24px; bottom: 32px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-header { grid-template-columns: 1fr; gap: 24px; }
+  section { padding: 100px 0; }
+  #hero, #cta { padding: 0; }
+  .cta-content { padding: 80px 24px; }
+  footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .hero-checkmarks { flex-direction: column; gap: 12px; }
+  h2 { font-size: clamp(2rem, 7vw, 3rem); }
+  .cta-form-wrap { padding: 36px 28px; }
+  .popup-card { padding: 44px 28px; }
+  .footer-links { flex-direction: column; gap: 16px; }
+}
+
+/* Magnetic button */
+.magnetic { transition: transform 0.4s var(--transition); }
+</style>
+</head>
+
+<body>
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Detailing<span>Expert</span></a>
+  <ul class="nav-links">
+    <li><a href="#why">Про нас</a></li>
+    <li><a href="#services">Послуги</a></li>
+    <li><a href="#portfolio">Портфоліо</a></li>
+    <li><a href="#reviews">Відгуки</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Записатися</a>
+</nav>
+
+<!-- ============================================
+     BLOCK 1: HERO
+============================================ -->
+<section id="hero">
+  <div class="hero-bg">
+    <img src="images/1.jpg" alt="Преміальний автомобіль після детейлінгу DetailingExpert" id="heroBg" loading="eager">
+  </div>
+  <div class="hero-gradient"></div>
+  <div class="hero-gradient-left"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Преміальний детейлінг</div>
+    <h1>Ваш автомобіль заслуговує виглядати як <em>новий щодня</em></h1>
+    <p class="hero-sub">Захист лакофарбового покриття, що зберігає ринкову вартість авто та повертає відчуття новизни на довгі роки.</p>
+    <div class="hero-checkmarks">
+      <div class="hero-check">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Сертифіковані матеріали
+      </div>
+      <div class="hero-check">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Гарантія якості
+      </div>
+      <div class="hero-check">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Понад 1000 обслужених авто
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary magnetic">
+        Отримати консультацію
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#services" class="btn-ghost magnetic">Дізнатися вартість</a>
+    </div>
+  </div>
+
+  <!-- Floating rating -->
+  <div class="hero-rating">
+    <div class="hero-rating-stars">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+    </div>
+    <div class="hero-rating-score">5.0</div>
+    <div class="hero-rating-label">Середня оцінка клієнтів</div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">1000<span>+</span></div>
+      <div class="hero-stat-label">Обслужених автомобілів</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5.0<span>★</span></div>
+      <div class="hero-stat-label">Середня оцінка</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">95<span>%</span></div>
+      <div class="hero-stat-label">Клієнтів повертаються</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">8<span>+</span></div>
+      <div class="hero-stat-label">Років досвіду</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOCK 2: WHY US
+============================================ -->
+<section id="why">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Наші переваги</div>
+      <h2 class="section-title">Автомобіль, який <em>привертає увагу</em><br>з першого погляду</h2>
+      <p class="section-subtitle">Кожен автомобіль — це інвестиція. Ми допомагаємо зберегти її цінність і красу на довгі роки.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal delay-1">
+        <svg class="why-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M28 8C17 8 8 17 8 28s9 20 20 20 20-9 20-20S39 8 28 8z"/>
+          <path d="M20 28l6 6 12-12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Сертифіковані матеріали</h3>
+        <p>Використовуємо лише продукцію провідних світових брендів — Gyeon, Koch Chemie, Meguiar's. Жодного ризику для лакофарбового покриття.</p>
+      </div>
+      <div class="why-card reveal delay-2">
+        <svg class="why-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M28 12l4.5 9 9.5 1.5-7 6.5 1.5 9.5L28 34l-8.5 4.5 1.5-9.5-7-6.5 9.5-1.5z" stroke-linejoin="round"/>
+        </svg>
+        <h3>Майстри з досвідом 8+ років</h3>
+        <p>Наші спеціалісти пройшли навчання в авторизованих центрах і мають підтверджений досвід роботи з преміальними автомобілями.</p>
+      </div>
+      <div class="why-card reveal delay-3">
+        <svg class="why-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M14 28h28M28 14v28" stroke-linecap="round"/>
+          <rect x="8" y="8" width="40" height="40" rx="2"/>
+        </svg>
+        <h3>Гарантія на всі роботи</h3>
+        <p>Ми так впевнені в результаті, що даємо письмову гарантію. Якщо щось піде не так — ми виправимо це безкоштовно.</p>
+      </div>
+      <div class="why-card reveal delay-4">
+        <svg class="why-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="8" y="12" width="16" height="32" rx="1"/>
+          <rect x="32" y="12" width="16" height="32" rx="1"/>
+          <path d="M24 28h8" stroke-linecap="round"/>
+        </svg>
+        <h3>Фото до і після</h3>
+        <p>Кожна робота документується. Ви побачите реальний результат і зрозумієте, яку трансформацію отримав ваш автомобіль.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOCK 3: SERVICES
+============================================ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="reveal">
+        <div class="section-label">Послуги</div>
+        <h2 class="section-title">Захистіть покриття до появи <em>дорогих пошкоджень</em></h2>
+      </div>
+      <div class="reveal delay-2">
+        <p class="section-subtitle">Ми не просто миємо автомобіль. Ми створюємо захисний бар'єр, що зберігає його вигляд і ринкову вартість.</p>
+      </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal delay-1">
+        <div class="service-card-img">
+          <img src="images/2.jpg" alt="Полірування автомобіля" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-num">01</div>
+          <h3>Полірування</h3>
+          <p>Видаляємо подряпини, потертості та оксидацію. Лак отримує дзеркальний блиск без втрати товщини покриття.</p>
+          <a href="#cta" class="service-link">
+            Дізнатися вартість
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card reveal delay-2">
+        <div class="service-card-img">
+          <img src="images/3.jpg" alt="Керамічне покриття" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-num">02</div>
+          <h3>Керамічне покриття</h3>
+          <p>Захист на 3–5 років. Кузов відштовхує воду, бруд і хімічні реагенти. Блиск зберігається навіть через роки.</p>
+          <a href="#cta" class="service-link">
+            Дізнатися вартість
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card reveal delay-3">
+        <div class="service-card-img">
+          <img src="images/4.jpg" alt="Хімчистка салону" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-num">03</div>
+          <h3>Хімчистка салону</h3>
+          <p>Повне відновлення інтер'єру. Шкіра, тканина, пластик виглядатимуть як у день покупки.</p>
+          <a href="#cta" class="service-link">
+            Дізнатися вартість
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card reveal delay-1">
+        <div class="service-card-img">
+          <img src="images/5.jpg" alt="PPF захисна плівка" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-num">04</div>
+          <h3>PPF захист</h3>
+          <p>Невидима броня для кузова. Поліуретанова плівка захищає від каменів, подряпин та агресивного середовища.</p>
+          <a href="#cta" class="service-link">
+            Дізнатися вартість
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card reveal delay-2">
+        <div class="service-card-img">
+          <img src="images/6.jpg" alt="Захисні покриття" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-num">05</div>
+          <h3>Захисні покриття</h3>
+          <p>Нанокерамічні та гідрофобні покриття для кузова, скла та дисків. Легке обслуговування та постійний блиск.</p>
+          <a href="#cta" class="service-link">
+            Дізнатися вартість
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="service-card reveal delay-3">
+        <div class="service-card-img">
+          <img src="images/7.jpg" alt="Комплексний детейлінг" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-num">06</div>
+          <h3>Комплексний детейлінг</h3>
+          <p>Повна трансформація автомобіля всередині і зовні. Ідеально перед продажем або для відновлення естетики.</p>
+          <a href="#cta" class="service-link">
+            Дізнатися вартість
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOCK 4: PORTFOLIO
+============================================ -->
+<section id="portfolio">
+  <div class="container">
+    <div class="portfolio-header reveal">
+      <div class="section-label">Портфоліо</div>
+      <h2 class="section-title">Результат, який видно <em>з першого погляду</em></h2>
+      <p class="section-subtitle" style="margin-top:16px">Натисніть на будь-яке фото, щоб побачити деталі трансформації.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item reveal delay-1" onclick="openModal('images/2.jpg','Полірування та кераміка','BMW 5 Series')">
+        <div class="portfolio-item-inner">
+          <img src="images/2.jpg" alt="Результат полірування BMW" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-content">
+              <h4>BMW 5 Series</h4>
+              <p>Полірування + керамічне покриття</p>
+            </div>
+          </div>
+          <div class="portfolio-badge">Кераміка</div>
+          <button class="portfolio-expand">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal delay-2" onclick="openModal('images/3.jpg','Повне відновлення','Mercedes C-Class')">
+        <div class="portfolio-item-inner">
+          <img src="images/3.jpg" alt="Результат детейлінгу Mercedes" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-content">
+              <h4>Mercedes C-Class</h4>
+              <p>Комплексний детейлінг</p>
+            </div>
+          </div>
+          <div class="portfolio-badge">Детейлінг</div>
+          <button class="portfolio-expand">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal delay-3" onclick="openModal('images/4.jpg','Хімчистка салону','Audi A6')">
+        <div class="portfolio-item-inner">
+          <img src="images/4.jpg" alt="Хімчистка салону Audi" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-content">
+              <h4>Audi A6</h4>
+              <p>Хімчистка салону</p>
+            </div>
+          </div>
+          <div class="portfolio-badge">Інтер'єр</div>
+          <button class="portfolio-expand">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal delay-1" onclick="openModal('images/5.jpg','PPF захист','Porsche Cayenne')">
+        <div class="portfolio-item-inner">
+          <img src="images/5.jpg" alt="PPF захист Porsche" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-content">
+              <h4>Porsche Cayenne</h4>
+              <p>PPF захисна плівка</p>
+            </div>
+          </div>
+          <div class="portfolio-badge">PPF</div>
+          <button class="portfolio-expand">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal delay-2" onclick="openModal('images/6.jpg','Захисне покриття','Tesla Model S')">
+        <div class="portfolio-item-inner">
+          <img src="images/6.jpg" alt="Захист Tesla" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-content">
+              <h4>Tesla Model S</h4>
+              <p>Нанокерамічне покриття</p>
+            </div>
+          </div>
+          <div class="portfolio-badge">Нано</div>
+          <button class="portfolio-expand">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="portfolio-item reveal delay-3" onclick="openModal('images/7.jpg','Комплекс','Land Rover')">
+        <div class="portfolio-item-inner">
+          <img src="images/7.jpg" alt="Комплексний детейлінг Land Rover" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="portfolio-overlay-content">
+              <h4>Land Rover Defender</h4>
+              <p>Повне відновлення екстер'єру</p>
+            </div>
+          </div>
+          <div class="portfolio-badge">Комплекс</div>
+          <button class="portfolio-expand">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModalBtn()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2L12 12M12 2L2 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Закрити
+    </button>
+    <img id="modalImg" src="" alt="">
+    <div class="modal-caption">
+      <span class="modal-caption-text" id="modalCaption">Результат роботи DetailingExpert</span>
+      <a href="#cta" class="service-link" onclick="closeModalBtn()" style="font-size:0.82rem">
+        Замовити такий самий
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     BLOCK 5: PROCESS
+============================================ -->
+<section id="process">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Як ми працюємо</div>
+      <h2 class="section-title">Від першого контакту до <em>бездоганного результату</em></h2>
+    </div>
+    <div class="process-layout">
+      <div class="process-steps">
+        <div class="process-step active reveal delay-1">
+          <div class="process-step-num">01</div>
+          <div class="process-step-content">
+            <h3>Заявка і консультація</h3>
+            <p>Зв'яжіться з нами будь-яким зручним способом. Наш спеціаліст уточнить стан автомобіля і підбере оптимальне рішення ще до приїзду.</p>
+          </div>
+        </div>
+        <div class="process-step reveal delay-2">
+          <div class="process-step-num">02</div>
+          <div class="process-step-content">
+            <h3>Огляд автомобіля</h3>
+            <p>Детально оцінюємо стан лакофарбового покриття та салону. Фіксуємо всі пошкодження і узгоджуємо фінальний обсяг робіт з вами.</p>
+          </div>
+        </div>
+        <div class="process-step reveal delay-3">
+          <div class="process-step-num">03</div>
+          <div class="process-step-content">
+            <h3>Виконання робіт</h3>
+            <p>Майстри з досвідом 8+ років виконують роботу, використовуючи тільки сертифіковані матеріали. Ви можете спостерігати за процесом або отримувати фото.</p>
+          </div>
+        </div>
+        <div class="process-step reveal delay-4">
+          <div class="process-step-num">04</div>
+          <div class="process-step-content">
+            <h3>Видача і гарантія</h3>
+            <p>Приймаєте роботу, отримуєте детальний звіт з фото до/після та письмову гарантію. Ваш автомобіль виглядає краще, ніж у день покупки.</p>
+          </div>
+        </div>
+      </div>
+      <div class="process-visual reveal-right delay-2">
+        <img src="images/8.jpg" alt="Процес детейлінгу" loading="lazy">
+        <div class="process-visual-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOCK 6: REVIEWS
+============================================ -->
+<section id="reviews">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Відгуки клієнтів</div>
+      <h2 class="section-title">Не наші слова — <em>їхній досвід</em></h2>
+    </div>
+  </div>
+  <div class="reviews-track-wrap" style="margin-top:72px">
+    <div class="reviews-track" id="reviewsTrack">
+      <!-- Original set -->
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+        </div>
+        <p class="review-text">"Після керамічного покриття мій BMW виглядає краще, ніж у день, коли я його забрав із салону. Через 14 місяців блиск як новий — жодного сліду від дощу чи бруду."</p>
+        <div class="review-author">
+          <div class="review-avatar">О</div>
+          <div>
+            <div class="review-name">Олег Карпенко</div>
+            <div class="review-car">BMW 5 Series • Кераміка</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+        </div>
+        <p class="review-text">"Перед продажем Porsche зробив комплексний детейлінг тут. Авто продав за 3 дні — і на 8% дорожче, ніж планував. Покупець сказав, що воно виглядає як щойно з автосалону."</p>
+        <div class="review-author">
+          <div class="review-avatar">М</div>
+          <div>
+            <div class="review-name">Максим Ткаченко</div>
+            <div class="review-car">Porsche Cayenne • Комплекс</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+        </div>
+        <p class="review-text">"Взяв хімчистку салону для Mercedes після двох років щоденної їзди. Не вірила своїм очам — шкіра виглядала краще, ніж я пам'ятаю її новою. Почуття неймовірне."</p>
+        <div class="review-author">
+          <div class="review-avatar">А</div>
+          <div>
+            <div class="review-name">Анна Левченко</div>
+            <div class="review-car">Mercedes GLE • Хімчистка</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+        </div>
+        <p class="review-text">"PPF на Audi RS — найкраще рішення, яке я приймав щодо свого авто. Рік їжджу по трасах, жодної подряпини від каменів. Вартість зберігається повністю."</p>
+        <div class="review-author">
+          <div class="review-avatar">Д</div>
+          <div>
+            <div class="review-name">Дмитро Мороз</div>
+            <div class="review-car">Audi RS6 • PPF захист</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+        </div>
+        <p class="review-text">"Звернувся з Tesla Model S — через два роки лак почав тьмяніти. Після полірування і кераміки авто виглядає чудово. Люди на парковці запитують, чи нова машина."</p>
+        <div class="review-author">
+          <div class="review-avatar">В</div>
+          <div>
+            <div class="review-name">Василь Петренко</div>
+            <div class="review-car">Tesla Model S • Полірування</div>
+          </div>
+        </div>
+      </div>
+      <!-- Duplicated for infinite scroll -->
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+        </div>
+        <p class="review-text">"Після кераміки автомобіль виглядає краще, ніж у день покупки. Вже рік — жодних нарікань. Рекомендую кожному, хто дбає про своє авто."</p>
+        <div class="review-author">
+          <div class="review-avatar">С</div>
+          <div>
+            <div class="review-name">Сергій Коваль</div>
+            <div class="review-car">Land Rover • Кераміка</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1L8.545 5.09H13L9.59 7.59L10.91 11.91L7 9.27L3.09 11.91L4.41 7.59L1 5.09H5.455L7 1Z"/></svg>
+        </div>
+        <p class="review-text">"Злякався ціни, але результат виправдав кожну гривню. Машина стоїть у дворі — сусіди думають, що нова. Захист від реагентів — це просто необхідність."</p>
+        <div class="review-author">
+          <div class="review-avatar">І</div>
+          <div>
+            <div class="review-name">Ігор Бондаренко</div>
+            <div class="review-car">BMW X5 • PPF + Кераміка</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BLOCK 7: FINAL CTA
+============================================ -->
+<section id="cta">
+  <div class="cta-bg">
+    <img src="images/1.jpg" alt="Преміальний автомобіль DetailingExpert" loading="lazy">
+  </div>
+  <div class="cta-gradient"></div>
+  <div class="cta-content">
+    <div class="cta-text reveal-left">
+      <div class="section-label">Зробіть перший крок</div>
+      <h2>Поверніть своєму авто <em>вигляд нового</em></h2>
+      <p style="margin-top:24px">Наш експерт підбере оптимальне рішення для вашого автомобіля і розповість, як зберегти його ідеальний вигляд на роки.</p>
+      <div style="margin-top:48px; display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex; align-items:center; gap:14px; font-size:0.88rem; color:var(--text-secondary);">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="color:var(--gold); flex-shrink:0"><path d="M3 9L7 13L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Безкоштовна консультація без зобов'язань
+        </div>
+        <div style="display:flex; align-items:center; gap:14px; font-size:0.88rem; color:var(--text-secondary);">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="color:var(--gold); flex-shrink:0"><path d="M3 9L7 13L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Індивідуальна пропозиція для вашого авто
+        </div>
+        <div style="display:flex; align-items:center; gap:14px; font-size:0.88rem; color:var(--text-secondary);">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="color:var(--gold); flex-shrink:0"><path d="M3 9L7 13L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Відповідь протягом 30 хвилин
+        </div>
+      </div>
+    </div>
+    <div class="cta-form-wrap reveal-right delay-2">
+      <div id="mainFormContent">
+        <div class="cta-form-title">Отримати персональну консультацію</div>
+        <p class="cta-form-sub">Дізнайтесь, який захист підходить саме вашому авто</p>
+        <form id="mainForm" onsubmit="handleSubmit(event, 'mainFormContent', 'mainThankYou')">
+          <div class="form-group">
+            <label>Ваше ім'я</label>
+            <input type="text" placeholder="Олексій" required>
+          </div>
+          <div class="form-group">
+            <label>Номер телефону</label>
+            <input type="tel" placeholder="+380 (00) 000-00-00" required>
+          </div>
+          <div class="form-group">
+            <label>Марка та модель авто</label>
+            <input type="text" placeholder="BMW 5 Series, 2021" required>
+          </div>
+          <button type="submit" class="form-submit magnetic">Отримати індивідуальну пропозицію</button>
+          <p class="form-note">Ваші дані захищені. Ми не розповсюджуємо персональну інформацію.</p>
+        </form>
+      </div>
+      <div class="thank-you" id="mainThankYou">
+        <h3>Дякуємо!</h3>
+        <p>Ваша заявка прийнята. Наш спеціаліст зв'яжеться з вами протягом 30 хвилин.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Detailing<span>Expert</span></div>
+  <div class="footer-links">
+    <a href="#why">Про нас</a>
+    <a href="#services">Послуги</a>
+    <a href="#portfolio">Портфоліо</a>
+    <a href="#cta">Контакти</a>
+  </div>
+  <div class="footer-copy">© 2024 DetailingExpert. Всі права захищені.</div>
+</footer>
+
+<!-- ============================================
+     POPUP
+============================================ -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-card popup">
+    <div class="popup-accent"></div>
+    <button class="popup-close" onclick="closePopup()">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Закрити
+    </button>
+    <div class="popup-eyebrow">Спеціальна пропозиція</div>
+    <h3 class="popup-title">Дізнайтесь, як зберегти <em>ідеальний вигляд</em> авто на роки</h3>
+    <p class="popup-sub">Наш експерт підбере оптимальне рішення саме для вашого автомобіля — безкоштовно і без зобов'язань.</p>
+    <div id="popupFormContent">
+      <form onsubmit="handleSubmit(event, 'popupFormContent', 'popupThankYou')">
+        <div class="form-group">
+          <label>Ваше ім'я</label>
+          <input type="text" placeholder="Ім'я" required>
+        </div>
+        <div class="form-group">
+          <label>Телефон</label>
+          <input type="tel" placeholder="+380 (00) 000-00-00" required>
+        </div>
+        <button type="submit" class="form-submit magnetic">Залишити заявку</button>
+        <p class="form-note" style="margin-top:12px">Передзвонимо протягом 30 хвилин</p>
+      </form>
+    </div>
+    <div class="thank-you" id="popupThankYou">
+      <h3>Дякуємо!</h3>
+      <p>Наш спеціаліст зв'яжеться з вами найближчим часом.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ CURSOR ============
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// ============ HERO IMAGE ============
+const heroBg = document.getElementById('heroBg');
+heroBg.onload = () => heroBg.classList.add('loaded');
+if (heroBg.complete) heroBg.classList.add('loaded');
+
+// ============ NAVBAR ============
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ============ REVEAL ON SCROLL ============
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => io.observe(el));
+
+// ============ PROCESS STEPS ACTIVE ============
+const processSteps = document.querySelectorAll('.process-step');
+const processIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      processSteps.forEach(s => s.classList.remove('active'));
+      e.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.5 });
+processSteps.forEach(s => processIO.observe(s));
+
+// ============ PARALLAX HERO ============
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const heroBgImg = document.querySelector('.hero-bg img');
+  if (heroBgImg && scrolled < window.innerHeight) {
+    heroBgImg.style.transform = `scale(1) translateY(${scrolled * 0.3}px)`;
+  }
+});
+
+// ============ MAGNETIC BUTTONS ============
+document.querySelectorAll('.magnetic').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) * 0.25;
+    const dy = (e.clientY - cy) * 0.25;
+    btn.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+// ============ MODAL ============
+function openModal(src, caption, car) {
+  const modal = document.getElementById('modal');
+  const img = document.getElementById('modalImg');
+  const cap = document.getElementById('modalCaption');
+  img.src = src;
+  img.alt = caption + ' — ' + car;
+  cap.textContent = car + ' — ' + caption;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModalBtn();
+});
+
+// ============ POPUP ============
+let popupShown = false;
+let popupTimer;
+let scrollTriggered = false;
+
+function showPopup() {
+  if (popupShown) return;
+  popupShown = true;
+  document.getElementById('popup').classList.add('active');
+}
+function closePopup() {
+  document.getElementById('popup').classList.remove('active');
+}
+
+// Time trigger: 25 seconds
+popupTimer = setTimeout(showPopup, 25000);
+
+// Scroll trigger: 60%
+window.addEventListener('scroll', () => {
+  if (scrollTriggered || popupShown) return;
+  const pct = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+  if (pct > 0.6) {
+    scrollTriggered = true;
+    clearTimeout(popupTimer);
+    setTimeout(showPopup, 500);
+  }
+}, { passive: true });
+
+document.getElementById('popup').addEventListener('click', e => {
+  if (e.target === document.getElementById('popup')) closePopup();
+});
+
+// ============ FORM SUBMIT ============
+function handleSubmit(e, contentId, thankYouId) {
+  e.preventDefault();
+  document.getElementById(contentId).querySelector('form').style.display = 'none';
+  document.getElementById(thankYouId).classList.add('show');
+}
+
+// ============ SMOOTH ANCHOR SCROLL ============
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// ============ DUPLICATE REVIEWS TRACK ============
+(function() {
+  const track = document.getElementById('reviewsTrack');
+  const clone = track.innerHTML;
+  track.innerHTML += clone;
+})();
+</script>
+</body>
+</html>
