@@ -145,6 +145,29 @@ nav.scrolled { padding: 14px 60px; }
   transition: background 0.3s, transform 0.3s var(--transition);
 }
 .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+
+/* LANG SWITCH */
+.lang-switch { display: flex; align-items: center; gap: 6px; }
+.lang-sep { color: var(--border-light); font-size: 0.75rem; }
+.lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.12em; color: var(--text-muted);
+  padding: 4px 2px; transition: color 0.3s;
+}
+.lang-btn:hover { color: var(--text-secondary); }
+.lang-btn.active { color: var(--gold); }
+.mobile-lang-switch {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 28px;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.5s var(--transition) 0.3s, transform 0.5s var(--transition) 0.3s;
+}
+.mobile-nav.open .mobile-lang-switch { opacity: 1; transform: translateY(0); }
+.mobile-lang-switch .lang-btn { font-size: 0.9rem; letter-spacing: 0.14em; color: var(--text-muted); }
+.mobile-lang-switch .lang-btn.active { color: var(--gold); }
+.mobile-lang-switch .lang-sep { color: var(--border-light); }
 
 /* MOBILE MENU */
 .nav-burger {
@@ -174,13 +197,15 @@ nav.scrolled { padding: 14px 60px; }
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(8,8,8,0.97);
-  backdrop-filter: blur(24px);
+  top: 0;
+  background: #080808;
   z-index: 1050;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0;
+  overflow: hidden;
+  overscroll-behavior: contain;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s var(--transition);
@@ -1436,6 +1461,7 @@ footer {
   nav { padding: 14px 20px; }
   nav.scrolled { padding: 12px 20px; }
   .nav-links { display: none; }
+  .nav-right { gap: 12px; }
   .nav-cta { display: none; }
   .nav-burger { display: flex; }
   .mobile-nav { display: flex; }
@@ -1571,7 +1597,14 @@ footer {
     <li><a href="#portfolio">Портфоліо</a></li>
     <li><a href="#reviews">Відгуки</a></li>
   </ul>
-  <a href="#cta" class="nav-cta">Записатися</a>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="uk" onclick="switchLang('uk')">UA</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="pl" onclick="switchLang('pl')">PL</button>
+    </div>
+    <button class="nav-cta" data-i18n="cta_book" onclick="showPopup()">Записатися</button>
+  </div>
   <button class="nav-burger" id="navBurger" aria-label="Меню">
     <span></span><span></span><span></span>
   </button>
@@ -1586,7 +1619,12 @@ footer {
     <li><a href="#portfolio" class="mobile-nav-link">Портфоліо</a></li>
     <li><a href="#reviews" class="mobile-nav-link">Відгуки</a></li>
   </ul>
-  <a href="#cta" class="mobile-nav-cta mobile-nav-link">Записатися</a>
+  <button class="mobile-nav-cta mobile-nav-link" data-i18n="cta_book" onclick="showPopup(); closeMobileNav();">Записатися</button>
+  <div class="mobile-lang-switch">
+    <button class="lang-btn active" data-lang="uk" onclick="switchLang('uk')">UA</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="pl" onclick="switchLang('pl')">PL</button>
+  </div>
 </div>
 
 <!-- ============================================
@@ -1824,94 +1862,70 @@ footer {
       <p class="section-subtitle" style="margin-top:16px">Натисніть на будь-яке фото, щоб побачити деталі трансформації.</p>
     </div>
     <div class="portfolio-grid">
-      <div class="portfolio-item reveal delay-1" onclick="openModal('images/2.jpg','Полірування та кераміка','BMW 5 Series')">
+      <div class="portfolio-item reveal delay-1" onclick="openModal('1.jpg','Полірування та кераміка','Mercedes-AMG G63')">
         <div class="portfolio-item-inner">
-          <img src="images/2.jpg" alt="Результат полірування BMW" loading="lazy">
-          <div class="portfolio-overlay">
-            <div class="portfolio-overlay-content">
-              <h4>BMW 5 Series</h4>
-              <p>Полірування + керамічне покриття</p>
-            </div>
-          </div>
-          <div class="portfolio-badge">Кераміка</div>
-          <button class="portfolio-expand">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          <img src="1.jpg" alt="Полірування та кераміка" loading="lazy">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-content">
+            <h4 data-i18n="port_car1">Mercedes-AMG G63</h4>
+            <p data-i18n="port_s1">Полірування + керамічне покриття</p>
+          </div></div>
+          <div class="portfolio-badge" data-i18n="badge_ceramic">Кераміка</div>
+          <button class="portfolio-expand"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
-      <div class="portfolio-item reveal delay-2" onclick="openModal('images/3.jpg','Повне відновлення','Mercedes C-Class')">
+      <div class="portfolio-item reveal delay-2" onclick="openModal('2.jpg','Повне відновлення','BMW 5 Series')">
         <div class="portfolio-item-inner">
-          <img src="images/3.jpg" alt="Результат детейлінгу Mercedes" loading="lazy">
-          <div class="portfolio-overlay">
-            <div class="portfolio-overlay-content">
-              <h4>Mercedes C-Class</h4>
-              <p>Комплексний детейлінг</p>
-            </div>
-          </div>
-          <div class="portfolio-badge">Детейлінг</div>
-          <button class="portfolio-expand">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          <img src="2.jpg" alt="Повне відновлення BMW" loading="lazy">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-content">
+            <h4 data-i18n="port_car2">BMW 5 Series</h4>
+            <p data-i18n="port_s2">Комплексний детейлінг</p>
+          </div></div>
+          <div class="portfolio-badge" data-i18n="badge_detailing">Детейлінг</div>
+          <button class="portfolio-expand"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
-      <div class="portfolio-item reveal delay-3" onclick="openModal('images/4.jpg','Хімчистка салону','Audi A6')">
+      <div class="portfolio-item reveal delay-3" onclick="openModal('3.jpeg','Хімчистка салону','Audi A6')">
         <div class="portfolio-item-inner">
-          <img src="images/4.jpg" alt="Хімчистка салону Audi" loading="lazy">
-          <div class="portfolio-overlay">
-            <div class="portfolio-overlay-content">
-              <h4>Audi A6</h4>
-              <p>Хімчистка салону</p>
-            </div>
-          </div>
-          <div class="portfolio-badge">Інтер'єр</div>
-          <button class="portfolio-expand">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          <img src="3.jpeg" alt="Хімчистка салону Audi" loading="lazy">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-content">
+            <h4 data-i18n="port_car3">Audi A6</h4>
+            <p data-i18n="port_s3">Хімчистка салону</p>
+          </div></div>
+          <div class="portfolio-badge" data-i18n="badge_interior">Інтер'єр</div>
+          <button class="portfolio-expand"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
-      <div class="portfolio-item reveal delay-1" onclick="openModal('images/5.jpg','PPF захист','Porsche Cayenne')">
+      <div class="portfolio-item reveal delay-1" onclick="openModal('4.jpg','PPF захист','Porsche Cayenne')">
         <div class="portfolio-item-inner">
-          <img src="images/5.jpg" alt="PPF захист Porsche" loading="lazy">
-          <div class="portfolio-overlay">
-            <div class="portfolio-overlay-content">
-              <h4>Porsche Cayenne</h4>
-              <p>PPF захисна плівка</p>
-            </div>
-          </div>
+          <img src="4.jpg" alt="PPF захист Porsche" loading="lazy">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-content">
+            <h4 data-i18n="port_car4">Porsche Cayenne</h4>
+            <p data-i18n="port_s4">PPF захисна плівка</p>
+          </div></div>
           <div class="portfolio-badge">PPF</div>
-          <button class="portfolio-expand">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          <button class="portfolio-expand"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
-      <div class="portfolio-item reveal delay-2" onclick="openModal('images/6.jpg','Захисне покриття','Tesla Model S')">
+      <div class="portfolio-item reveal delay-2" onclick="openModal('5.jpg','Захисне покриття','Tesla Model S')">
         <div class="portfolio-item-inner">
-          <img src="images/6.jpg" alt="Захист Tesla" loading="lazy">
-          <div class="portfolio-overlay">
-            <div class="portfolio-overlay-content">
-              <h4>Tesla Model S</h4>
-              <p>Нанокерамічне покриття</p>
-            </div>
-          </div>
-          <div class="portfolio-badge">Нано</div>
-          <button class="portfolio-expand">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          <img src="5.jpg" alt="Захист Tesla" loading="lazy">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-content">
+            <h4 data-i18n="port_car5">Tesla Model S</h4>
+            <p data-i18n="port_s5">Нанокерамічне покриття</p>
+          </div></div>
+          <div class="portfolio-badge" data-i18n="badge_nano">Нано</div>
+          <button class="portfolio-expand"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
-      <div class="portfolio-item reveal delay-3" onclick="openModal('images/7.jpg','Комплекс','Land Rover')">
+      <div class="portfolio-item reveal delay-3" onclick="openModal('6.jpg','Комплексний детейлінг','Land Rover Defender')">
         <div class="portfolio-item-inner">
-          <img src="images/7.jpg" alt="Комплексний детейлінг Land Rover" loading="lazy">
-          <div class="portfolio-overlay">
-            <div class="portfolio-overlay-content">
-              <h4>Land Rover Defender</h4>
-              <p>Повне відновлення екстер'єру</p>
-            </div>
-          </div>
-          <div class="portfolio-badge">Комплекс</div>
-          <button class="portfolio-expand">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          <img src="6.jpg" alt="Комплексний детейлінг Land Rover" loading="lazy">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-content">
+            <h4 data-i18n="port_car6">Land Rover Defender</h4>
+            <p data-i18n="port_s6">Повне відновлення екстер'єру</p>
+          </div></div>
+          <div class="portfolio-badge" data-i18n="badge_full">Комплекс</div>
+          <button class="portfolio-expand"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
     </div>
@@ -2502,6 +2516,531 @@ function updateCalcPrice() {
 }
 
 updateCalcPrice();
+
+// ============================================================
+// i18n — UA / PL
+// ============================================================
+let currentLang = 'uk';
+
+const TRANSLATIONS = {
+  uk: {
+    // NAV
+    nav_about: 'Про нас', nav_services: 'Послуги',
+    nav_portfolio: 'Портфоліо', nav_reviews: 'Відгуки',
+    cta_book: 'Записатися',
+
+    // HERO
+    hero_eyebrow: 'Преміальний детейлінг',
+    hero_h1: 'Ваш автомобіль заслуговує<br>виглядати як <em>новий щодня</em>',
+    hero_sub: 'Захищаємо лакофарбове покриття та зберігаємо ринкову вартість авто на довгі роки.',
+    hero_check1: 'Сертифіковані матеріали',
+    hero_check2: 'Гарантія якості',
+    hero_check3: 'Понад 1000 обслужених авто',
+    hero_btn1: 'Отримати консультацію',
+    hero_btn2: 'Дізнатися вартість',
+    hero_stat1: 'Обслужених автомобілів',
+    hero_stat2: 'Середня оцінка',
+    hero_stat3: 'Клієнтів повертаються',
+    hero_stat4: 'Років досвіду',
+    hero_rating_lbl: 'Середня оцінка клієнтів',
+
+    // WHY
+    why_lbl: 'Наші переваги',
+    why_h2: 'Автомобіль, який <em>привертає увагу</em><br>з першого погляду',
+    why_sub: 'Кожен автомобіль — це інвестиція. Ми допомагаємо зберегти її цінність і красу на довгі роки.',
+    why1_t: 'Сертифіковані матеріали',
+    why1_d: 'Використовуємо лише продукцію провідних світових брендів — Gyeon, Koch Chemie, Meguiar\'s. Жодного ризику для лакофарбового покриття.',
+    why2_t: 'Майстри з досвідом 8+ років',
+    why2_d: 'Наші спеціалісти пройшли навчання в авторизованих центрах і мають підтверджений досвід роботи з преміальними автомобілями.',
+    why3_t: 'Гарантія на всі роботи',
+    why3_d: 'Ми так впевнені в результаті, що даємо письмову гарантію. Якщо щось піде не так — ми виправимо це безкоштовно.',
+    why4_t: 'Фото до і після',
+    why4_d: 'Кожна робота документується. Ви побачите реальний результат і зрозумієте, яку трансформацію отримав ваш автомобіль.',
+
+    // SERVICES
+    svc_lbl: 'Послуги',
+    svc_h2: 'Захистіть покриття до появи <em>дорогих пошкоджень</em>',
+    svc_sub: 'Ми не просто миємо автомобіль. Ми створюємо захисний бар\'єр, що зберігає його вигляд і ринкову вартість.',
+    svc1_t: 'Полірування', svc1_d: 'Видаляємо подряпини, потертості та оксидацію. Лак отримує дзеркальний блиск без втрати товщини покриття.', svc_link: 'Дізнатися вартість',
+    svc2_t: 'Керамічне покриття', svc2_d: 'Захист на 3–5 років. Кузов відштовхує воду, бруд і хімічні реагенти. Блиск зберігається навіть через роки.',
+    svc3_t: 'Хімчистка салону', svc3_d: 'Повне відновлення інтер\'єру. Шкіра, тканина, пластик виглядатимуть як у день покупки.',
+    svc4_t: 'PPF захист', svc4_d: 'Невидима броня для кузова. Поліуретанова плівка захищає від каменів, подряпин та агресивного середовища.',
+    svc5_t: 'Захисні покриття', svc5_d: 'Нанокерамічні та гідрофобні покриття для кузова, скла та дисків. Легке обслуговування та постійний блиск.',
+    svc6_t: 'Комплексний детейлінг', svc6_d: 'Повна трансформація автомобіля всередині і зовні. Ідеально перед продажем або для відновлення естетики.',
+
+    // PORTFOLIO
+    port_lbl: 'Портфоліо',
+    port_h2: 'Результат, який видно <em>з першого погляду</em>',
+    port_sub: 'Натисніть на будь-яке фото, щоб побачити деталі трансформації.',
+    port_car1: 'Mercedes-AMG G63', port_s1: 'Полірування + керамічне покриття',
+    port_car2: 'BMW 5 Series',      port_s2: 'Комплексний детейлінг',
+    port_car3: 'Audi A6',           port_s3: 'Хімчистка салону',
+    port_car4: 'Porsche Cayenne',   port_s4: 'PPF захисна плівка',
+    port_car5: 'Tesla Model S',     port_s5: 'Нанокерамічне покриття',
+    port_car6: 'Land Rover Defender', port_s6: 'Повне відновлення екстер\'єру',
+    badge_ceramic: 'Кераміка', badge_detailing: 'Детейлінг',
+    badge_interior: 'Інтер\'єр', badge_nano: 'Нано', badge_full: 'Комплекс',
+
+    // PROCESS
+    proc_lbl: 'Як ми працюємо',
+    proc_h2: 'Від першого контакту до <em>бездоганного результату</em>',
+    proc1_t: 'Заявка і консультація', proc1_d: 'Зв\'яжіться з нами будь-яким зручним способом. Наш спеціаліст уточнить стан автомобіля і підбере оптимальне рішення ще до приїзду.',
+    proc2_t: 'Огляд автомобіля', proc2_d: 'Детально оцінюємо стан лакофарбового покриття та салону. Фіксуємо всі пошкодження і узгоджуємо фінальний обсяг робіт з вами.',
+    proc3_t: 'Виконання робіт', proc3_d: 'Майстри з досвідом 8+ років виконують роботу, використовуючи тільки сертифіковані матеріали. Ви можете спостерігати за процесом або отримувати фото.',
+    proc4_t: 'Видача і гарантія', proc4_d: 'Приймаєте роботу, отримуєте детальний звіт з фото до/після та письмову гарантію. Ваш автомобіль виглядає краще, ніж у день покупки.',
+
+    // REVIEWS
+    rev_lbl: 'Відгуки клієнтів',
+    rev_h2: 'Не наші слова — <em>їхній досвід</em>',
+    rev1_text: '"Після керамічного покриття мій BMW виглядає краще, ніж у день, коли я його забрав із салону. Через 14 місяців блиск як новий — жодного сліду від дощу чи бруду."',
+    rev1_name: 'Олег Карпенко', rev1_car: 'BMW 5 Series • Кераміка',
+    rev2_text: '"Перед продажем Porsche зробив комплексний детейлінг тут. Авто продав за 3 дні — і на 8% дорожче, ніж планував. Покупець сказав, що воно виглядає як щойно з автосалону."',
+    rev2_name: 'Максим Ткаченко', rev2_car: 'Porsche Cayenne • Комплекс',
+    rev3_text: '"Взяв хімчистку салону для Mercedes після двох років щоденної їзди. Не вірила своїм очам — шкіра виглядала краще, ніж я пам\'ятаю її новою. Почуття неймовірне."',
+    rev3_name: 'Анна Левченко', rev3_car: 'Mercedes GLE • Хімчистка',
+    rev4_text: '"PPF на Audi RS — найкраще рішення, яке я приймав щодо свого авто. Рік їжджу по трасах, жодної подряпини від каменів. Вартість зберігається повністю."',
+    rev4_name: 'Дмитро Мороз', rev4_car: 'Audi RS6 • PPF захист',
+    rev5_text: '"Звернувся з Tesla Model S — через два роки лак почав тьмяніти. Після полірування і кераміки авто виглядає чудово. Люди на парковці запитують, чи нова машина."',
+    rev5_name: 'Василь Петренко', rev5_car: 'Tesla Model S • Полірування',
+    rev6_text: '"Після кераміки автомобіль виглядає краще, ніж у день покупки. Вже рік — жодних нарікань. Рекомендую кожному, хто дбає про своє авто."',
+    rev6_name: 'Сергій Коваль', rev6_car: 'Land Rover • Кераміка',
+    rev7_text: '"Злякався ціни, але результат виправдав кожну гривню. Машина стоїть у дворі — сусіди думають, що нова. Захист від реагентів — це просто необхідність."',
+    rev7_name: 'Ігор Бондаренко', rev7_car: 'BMW X5 • PPF + Кераміка',
+
+    // CTA SECTION
+    cta_lbl: 'Зробіть перший крок',
+    cta_h2: 'Поверніть своєму авто <em>вигляд нового</em>',
+    cta_p: 'Наш експерт підбере оптимальне рішення для вашого автомобіля і розповість, як зберегти його ідеальний вигляд на роки.',
+    cta_li1: 'Безкоштовна консультація без зобов\'язань',
+    cta_li2: 'Індивідуальна пропозиція для вашого авто',
+    cta_li3: 'Відповідь протягом 30 хвилин',
+    form_title: 'Отримати персональну консультацію',
+    form_sub: 'Дізнайтесь, який захист підходить саме вашому авто',
+    form_name_lbl: 'Ваше ім\'я', form_name_ph: 'Олексій',
+    form_tel_lbl: 'Номер телефону', form_tel_ph: '+380 (00) 000-00-00',
+    form_car_lbl: 'Марка та модель авто', form_car_ph: 'BMW 5 Series, 2021',
+    form_submit: 'Отримати індивідуальну пропозицію',
+    form_note: 'Ваші дані захищені. Ми не розповсюджуємо персональну інформацію.',
+    thanks_title: 'Дякуємо!', thanks_text: 'Ваша заявка прийнята. Наш спеціаліст зв\'яжеться з вами протягом 30 хвилин.',
+
+    // POPUP
+    pop_eyebrow: 'Спеціальна пропозиція',
+    pop_title: 'Дізнайтесь, як зберегти <em>ідеальний вигляд</em> авто на роки',
+    pop_sub: 'Наш експерт підбере оптимальне рішення саме для вашого автомобіля — безкоштовно і без зобов\'язань.',
+    pop_name_lbl: 'Ваше ім\'я', pop_name_ph: 'Ім\'я',
+    pop_tel_lbl: 'Телефон', pop_tel_ph: '+380 (00) 000-00-00',
+    pop_submit: 'Залишити заявку',
+    pop_note: 'Передзвонимо протягом 30 хвилин',
+
+    // CALC
+    calc_eyebrow: 'Калькулятор вартості',
+    calc_title: 'Приблизна вартість послуги',
+    calc_sub: 'Оберіть параметри — ціна розрахується автоматично. Точна вартість після огляду авто.',
+    calc_class_lbl: 'Клас автомобіля',
+    calc_svc_lbl: 'Послуга',
+    calc_cond_lbl: 'Стан покриття',
+    calc_res_lbl: 'Орієнтовна вартість',
+    calc_note: '* Розрахунок орієнтовний. Точна ціна визначається після безкоштовного огляду автомобіля. Виїзд майстра — безкоштовно.',
+    calc_cta: 'Записатися на безкоштовний огляд',
+    cond_good: 'Добрий', cond_scratches: 'Є подряпини', cond_correction: 'Потрібна корекція',
+    class_sedan: 'Sedan / Hatchback', class_suv: 'SUV / Crossover',
+    class_van: 'Minivan / Pickup', class_premium: 'Premium / Спорт',
+
+    // FOOTER
+    foot_copy: '© 2024 DetailingExpert. Всі права захищені.',
+    modal_close: 'Закрити', modal_order: 'Замовити такий самий',
+  },
+
+  pl: {
+    nav_about: 'O nas', nav_services: 'Usługi',
+    nav_portfolio: 'Portfolio', nav_reviews: 'Opinie',
+    cta_book: 'Umów wizytę',
+
+    hero_eyebrow: 'Detailing premium',
+    hero_h1: 'Twój samochód zasługuje,<br>by wyglądać jak <em>nowy każdego dnia</em>',
+    hero_sub: 'Chronimy lakier i zachowujemy wartość rynkową pojazdu na długie lata.',
+    hero_check1: 'Certyfikowane materiały',
+    hero_check2: 'Gwarancja jakości',
+    hero_check3: 'Ponad 1000 obsłużonych aut',
+    hero_btn1: 'Uzyskaj konsultację',
+    hero_btn2: 'Sprawdź ceny',
+    hero_stat1: 'Obsłużonych aut',
+    hero_stat2: 'Średnia ocena',
+    hero_stat3: 'Klientów wraca',
+    hero_stat4: 'Lat doświadczenia',
+    hero_rating_lbl: 'Średnia ocena klientów',
+
+    why_lbl: 'Nasze atuty',
+    why_h2: 'Samochód, który <em>przyciąga wzrok</em><br>od pierwszego spojrzenia',
+    why_sub: 'Każdy samochód to inwestycja. Pomagamy zachować jej wartość i piękno na długie lata.',
+    why1_t: 'Certyfikowane materiały',
+    why1_d: 'Używamy wyłącznie produktów czołowych światowych marek — Gyeon, Koch Chemie, Meguiar\'s. Zero ryzyka dla lakieru.',
+    why2_t: 'Specjaliści z doświadczeniem 8+ lat',
+    why2_d: 'Nasi specjaliści przeszli szkolenia w autoryzowanych centrach i mają potwierdzone doświadczenie w pracy z autami premium.',
+    why3_t: 'Gwarancja na wszystkie prace',
+    why3_d: 'Jesteśmy tak pewni efektu, że dajemy pisemną gwarancję. Jeśli coś pójdzie nie tak — poprawiamy bezpłatnie.',
+    why4_t: 'Zdjęcia przed i po',
+    why4_d: 'Każda praca jest dokumentowana. Zobaczysz realny efekt i zrozumiesz, jak bardzo zmienił się Twój samochód.',
+
+    svc_lbl: 'Usługi',
+    svc_h2: 'Zabezpiecz lakier zanim pojawią się <em>kosztowne uszkodzenia</em>',
+    svc_sub: 'Nie tylko myjemy auto. Tworzymy barierę ochronną, która zachowuje jego wygląd i wartość rynkową.',
+    svc1_t: 'Polerowanie', svc1_d: 'Usuwamy rysy, przetarcia i oksydację. Lakier zyskuje lustrzany połysk bez utraty grubości powłoki.', svc_link: 'Sprawdź ceny',
+    svc2_t: 'Powłoka ceramiczna', svc2_d: 'Ochrona na 3–5 lat. Karoseria odpycha wodę, brud i środki chemiczne. Połysk utrzymuje się przez lata.',
+    svc3_t: 'Czyszczenie wnętrza', svc3_d: 'Pełna renowacja wnętrza. Skóra, tkanina i plastik będą wyglądać jak w dniu zakupu.',
+    svc4_t: 'Folia PPF', svc4_d: 'Niewidoczna zbroja dla karoserii. Folia poliuretanowa chroni przed kamieniami, rysami i agresywnym środowiskiem.',
+    svc5_t: 'Powłoki ochronne', svc5_d: 'Nanoceramiczne i hydrofobowe powłoki na karoserię, szyby i felgi. Łatwa pielęgnacja i stały połysk.',
+    svc6_t: 'Kompleksowy detailing', svc6_d: 'Pełna transformacja auta wewnątrz i na zewnątrz. Idealne przed sprzedażą lub odświeżeniem estetyki.',
+
+    port_lbl: 'Portfolio',
+    port_h2: 'Efekt, który widać <em>na pierwszy rzut oka</em>',
+    port_sub: 'Kliknij dowolne zdjęcie, aby zobaczyć szczegóły transformacji.',
+    port_car1: 'Mercedes-AMG G63', port_s1: 'Polerowanie + powłoka ceramiczna',
+    port_car2: 'BMW 5 Series',      port_s2: 'Kompleksowy detailing',
+    port_car3: 'Audi A6',           port_s3: 'Czyszczenie wnętrza',
+    port_car4: 'Porsche Cayenne',   port_s4: 'Folia ochronna PPF',
+    port_car5: 'Tesla Model S',     port_s5: 'Powłoka nanoceramiczna',
+    port_car6: 'Land Rover Defender', port_s6: 'Pełna renowacja nadwozia',
+    badge_ceramic: 'Ceramika', badge_detailing: 'Detailing',
+    badge_interior: 'Wnętrze', badge_nano: 'Nano', badge_full: 'Kompleks',
+
+    proc_lbl: 'Jak pracujemy',
+    proc_h2: 'Od pierwszego kontaktu do <em>nienagannego efektu</em>',
+    proc1_t: 'Zapytanie i konsultacja', proc1_d: 'Skontaktuj się z nami w dowolny wygodny sposób. Nasz specjalista oceni stan auta i dobierze optymalne rozwiązanie jeszcze przed przyjazdem.',
+    proc2_t: 'Oględziny samochodu', proc2_d: 'Szczegółowo oceniamy stan lakieru i wnętrza. Dokumentujemy wszystkie uszkodzenia i uzgadniamy zakres prac z klientem.',
+    proc3_t: 'Realizacja prac', proc3_d: 'Specjaliści z doświadczeniem 8+ lat wykonują pracę, używając wyłącznie certyfikowanych materiałów. Możesz obserwować proces lub otrzymywać zdjęcia.',
+    proc4_t: 'Odbiór i gwarancja', proc4_d: 'Odbierasz auto, otrzymujesz szczegółowy raport ze zdjęciami przed/po oraz pisemną gwarancję. Twój samochód wygląda lepiej niż w dniu zakupu.',
+
+    rev_lbl: 'Opinie klientów',
+    rev_h2: 'Nie nasze słowa — <em>ich doświadczenie</em>',
+    rev1_text: '"Po założeniu powłoki ceramicznej moje BMW wygląda lepiej niż w dniu odbioru z salonu. Po 14 miesiącach połysk jak nowy — żadnego śladu po deszczu czy błocie."',
+    rev1_name: 'Oleg Karpenko', rev1_car: 'BMW 5 Series • Ceramika',
+    rev2_text: '"Przed sprzedażą Porsche zrobiłem tu kompleksowy detailing. Sprzedałem auto w 3 dni — i o 8% drożej niż planowałem. Kupujący powiedział, że wygląda jak prosto z salonu."',
+    rev2_name: 'Maksym Tkachenko', rev2_car: 'Porsche Cayenne • Kompleks',
+    rev3_text: '"Wzięłam czyszczenie wnętrza Mercedesa po dwóch latach codziennej jazdy. Nie wierzyłam własnym oczom — skóra wyglądała lepiej, niż pamiętam ją jako nową."',
+    rev3_name: 'Anna Lewczenko', rev3_car: 'Mercedes GLE • Czyszczenie',
+    rev4_text: '"Folia PPF na Audi RS — najlepsza decyzja dotycząca mojego auta. Rok jeżdżę po autostradach, żadnego rysu od kamieni. Wartość zachowana w pełni."',
+    rev4_name: 'Dmytro Moroz', rev4_car: 'Audi RS6 • Folia PPF',
+    rev5_text: '"Zgłosiłem Teslę Model S — po dwóch latach lakier zaczął tracić połysk. Po polerowaniu i ceramice auto wygląda świetnie. Ludzie na parkingu pytają, czy nowe."',
+    rev5_name: 'Wasyl Petrenko', rev5_car: 'Tesla Model S • Polerowanie',
+    rev6_text: '"Po ceramice samochód wygląda lepiej niż w dniu zakupu. Już rok — żadnych zastrzeżeń. Polecam każdemu, kto dba o swoje auto."',
+    rev6_name: 'Serhij Kowal', rev6_car: 'Land Rover • Ceramika',
+    rev7_text: '"Przestraszyłem się ceny, ale efekt uzasadnił każdą złotówkę. Auto stoi na podwórku — sąsiedzi myślą, że nowe. Ochrona przed solą to po prostu konieczność."',
+    rev7_name: 'Igor Bondarenko', rev7_car: 'BMW X5 • PPF + Ceramika',
+
+    cta_lbl: 'Zrób pierwszy krok',
+    cta_h2: 'Przywróć swojemu autu <em>wygląd nowego</em>',
+    cta_p: 'Nasz ekspert dobierze optymalne rozwiązanie dla Twojego samochodu i wyjaśni, jak zachować jego idealny wygląd na lata.',
+    cta_li1: 'Bezpłatna konsultacja bez zobowiązań',
+    cta_li2: 'Indywidualna oferta dla Twojego auta',
+    cta_li3: 'Odpowiedź w ciągu 30 minut',
+    form_title: 'Uzyskaj personalną konsultację',
+    form_sub: 'Dowiedz się, jakie zabezpieczenie jest idealne dla Twojego auta',
+    form_name_lbl: 'Twoje imię', form_name_ph: 'Aleksander',
+    form_tel_lbl: 'Numer telefonu', form_tel_ph: '+48 (00) 000-00-00',
+    form_car_lbl: 'Marka i model auta', form_car_ph: 'BMW 5 Series, 2021',
+    form_submit: 'Uzyskaj indywidualną ofertę',
+    form_note: 'Twoje dane są chronione. Nie udostępniamy informacji osobistych.',
+    thanks_title: 'Dziękujemy!', thanks_text: 'Twoje zgłoszenie zostało przyjęte. Nasz specjalista skontaktuje się w ciągu 30 minut.',
+
+    pop_eyebrow: 'Oferta specjalna',
+    pop_title: 'Dowiedz się, jak zachować <em>idealny wygląd</em> auta na lata',
+    pop_sub: 'Nasz ekspert dobierze optymalne rozwiązanie właśnie dla Twojego samochodu — bezpłatnie i bez zobowiązań.',
+    pop_name_lbl: 'Twoje imię', pop_name_ph: 'Imię',
+    pop_tel_lbl: 'Telefon', pop_tel_ph: '+48 (00) 000-00-00',
+    pop_submit: 'Zostaw zgłoszenie',
+    pop_note: 'Oddzwonimy w ciągu 30 minut',
+
+    calc_eyebrow: 'Kalkulator kosztów',
+    calc_title: 'Przybliżony koszt usługi',
+    calc_sub: 'Wybierz parametry — cena obliczy się automatycznie. Dokładna wycena po oględzinach.',
+    calc_class_lbl: 'Klasa samochodu',
+    calc_svc_lbl: 'Usługa',
+    calc_cond_lbl: 'Stan lakieru',
+    calc_res_lbl: 'Szacunkowy koszt',
+    calc_note: '* Kalkulacja orientacyjna. Dokładna cena ustalana po bezpłatnych oględzinach. Dojazd specjalisty — bezpłatny.',
+    calc_cta: 'Umów bezpłatne oględziny',
+    cond_good: 'Dobry', cond_scratches: 'Są rysy', cond_correction: 'Potrzebna korekta',
+    class_sedan: 'Sedan / Hatchback', class_suv: 'SUV / Crossover',
+    class_van: 'Minivan / Pickup', class_premium: 'Premium / Sport',
+
+    foot_copy: '© 2024 DetailingExpert. Wszelkie prawa zastrzeżone.',
+    modal_close: 'Zamknij', modal_order: 'Zamów to samo',
+  }
+};
+
+// DOM map: key → { selector, prop, index? }
+// prop: 'text' | 'html' | 'placeholder'
+const DOM_MAP = [
+  // NAV
+  { k:'nav_about',    s:'.nav-links li:nth-child(1) a',       p:'text' },
+  { k:'nav_services', s:'.nav-links li:nth-child(2) a',       p:'text' },
+  { k:'nav_portfolio',s:'.nav-links li:nth-child(3) a',       p:'text' },
+  { k:'nav_reviews',  s:'.nav-links li:nth-child(4) a',       p:'text' },
+  { k:'cta_book',     s:'[data-i18n="cta_book"]',             p:'text', all:true },
+  // HERO
+  { k:'hero_eyebrow', s:'.hero-eyebrow',    p:'text' },
+  { k:'hero_h1',      s:'#hero h1',         p:'html' },
+  { k:'hero_sub',     s:'.hero-sub',        p:'text' },
+  { k:'hero_check1',  s:'.hero-check:nth-child(1)',  p:'text' },
+  { k:'hero_check2',  s:'.hero-check:nth-child(2)',  p:'text' },
+  { k:'hero_check3',  s:'.hero-check:nth-child(3)',  p:'text' },
+  { k:'hero_btn1',    s:'.hero-actions-bottom .btn-primary', p:'text' },
+  { k:'hero_btn2',    s:'.hero-actions-bottom .btn-ghost',   p:'text' },
+  { k:'hero_stat1',   s:'.hero-stat:nth-child(1) .hero-stat-label', p:'text' },
+  { k:'hero_stat2',   s:'.hero-stat:nth-child(2) .hero-stat-label', p:'text' },
+  { k:'hero_stat3',   s:'.hero-stat:nth-child(3) .hero-stat-label', p:'text' },
+  { k:'hero_stat4',   s:'.hero-stat:nth-child(4) .hero-stat-label', p:'text' },
+  { k:'hero_rating_lbl', s:'.hero-rating-label', p:'text' },
+  // WHY
+  { k:'why_lbl', s:'#why .section-label',   p:'text' },
+  { k:'why_h2',  s:'#why .section-title',   p:'html' },
+  { k:'why_sub', s:'#why .section-subtitle',p:'text' },
+  { k:'why1_t',  s:'.why-card:nth-child(1) h3', p:'text' },
+  { k:'why1_d',  s:'.why-card:nth-child(1) p',  p:'text' },
+  { k:'why2_t',  s:'.why-card:nth-child(2) h3', p:'text' },
+  { k:'why2_d',  s:'.why-card:nth-child(2) p',  p:'text' },
+  { k:'why3_t',  s:'.why-card:nth-child(3) h3', p:'text' },
+  { k:'why3_d',  s:'.why-card:nth-child(3) p',  p:'text' },
+  { k:'why4_t',  s:'.why-card:nth-child(4) h3', p:'text' },
+  { k:'why4_d',  s:'.why-card:nth-child(4) p',  p:'text' },
+  // SERVICES
+  { k:'svc_lbl', s:'#services .section-label',    p:'text' },
+  { k:'svc_h2',  s:'#services .section-title',    p:'html' },
+  { k:'svc_sub', s:'#services .section-subtitle', p:'text' },
+  { k:'svc1_t',  s:'.service-card:nth-child(1) h3', p:'text' },
+  { k:'svc1_d',  s:'.service-card:nth-child(1) p',  p:'text' },
+  { k:'svc2_t',  s:'.service-card:nth-child(2) h3', p:'text' },
+  { k:'svc2_d',  s:'.service-card:nth-child(2) p',  p:'text' },
+  { k:'svc3_t',  s:'.service-card:nth-child(3) h3', p:'text' },
+  { k:'svc3_d',  s:'.service-card:nth-child(3) p',  p:'text' },
+  { k:'svc4_t',  s:'.service-card:nth-child(4) h3', p:'text' },
+  { k:'svc4_d',  s:'.service-card:nth-child(4) p',  p:'text' },
+  { k:'svc5_t',  s:'.service-card:nth-child(5) h3', p:'text' },
+  { k:'svc5_d',  s:'.service-card:nth-child(5) p',  p:'text' },
+  { k:'svc6_t',  s:'.service-card:nth-child(6) h3', p:'text' },
+  { k:'svc6_d',  s:'.service-card:nth-child(6) p',  p:'text' },
+  { k:'svc_link',s:'.service-link', p:'text', all:true },
+  // PORTFOLIO
+  { k:'port_lbl', s:'#portfolio .section-label',    p:'text' },
+  { k:'port_h2',  s:'#portfolio .section-title',    p:'html' },
+  { k:'port_sub', s:'#portfolio .section-subtitle', p:'text' },
+  // PROCESS
+  { k:'proc_lbl', s:'#process .section-label',    p:'text' },
+  { k:'proc_h2',  s:'#process .section-title',    p:'html' },
+  { k:'proc1_t',  s:'.process-step:nth-child(1) h3', p:'text' },
+  { k:'proc1_d',  s:'.process-step:nth-child(1) p',  p:'text' },
+  { k:'proc2_t',  s:'.process-step:nth-child(2) h3', p:'text' },
+  { k:'proc2_d',  s:'.process-step:nth-child(2) p',  p:'text' },
+  { k:'proc3_t',  s:'.process-step:nth-child(3) h3', p:'text' },
+  { k:'proc3_d',  s:'.process-step:nth-child(3) p',  p:'text' },
+  { k:'proc4_t',  s:'.process-step:nth-child(4) h3', p:'text' },
+  { k:'proc4_d',  s:'.process-step:nth-child(4) p',  p:'text' },
+  // REVIEWS
+  { k:'rev_lbl', s:'#reviews .section-label',    p:'text' },
+  { k:'rev_h2',  s:'#reviews .section-title',    p:'html' },
+  // CTA
+  { k:'cta_lbl', s:'#cta .section-label',   p:'text' },
+  { k:'cta_h2',  s:'#cta .cta-text h2',     p:'html' },
+  { k:'cta_p',   s:'#cta .cta-text > p',    p:'text' },
+  { k:'form_title', s:'.cta-form-title',    p:'text' },
+  { k:'form_sub',   s:'.cta-form-sub',      p:'text' },
+  { k:'form_submit',s:'#mainForm .form-submit', p:'text' },
+  // POPUP
+  { k:'pop_eyebrow',s:'.popup-eyebrow',     p:'text' },
+  { k:'pop_title',  s:'.popup-title',       p:'html' },
+  { k:'pop_sub',    s:'.popup-sub',         p:'text' },
+  { k:'pop_submit', s:'#popup .form-submit',p:'text' },
+  // CALC
+  { k:'calc_eyebrow',  s:'.calc-eyebrow',   p:'text' },
+  { k:'calc_title',    s:'.calc-title',     p:'text' },
+  { k:'calc_sub',      s:'.calc-sub',       p:'text' },
+  { k:'calc_note',     s:'.calc-note',      p:'text' },
+  { k:'calc_cta',      s:'.calc-cta-btn',   p:'text' },
+  // FOOTER
+  { k:'foot_copy', s:'.footer-copy', p:'text' },
+  { k:'modal_close', s:'.modal-close', p:'html' },
+];
+
+// data-i18n elements (portfolio badges + labels)
+function applyDataI18n(lang) {
+  const t = TRANSLATIONS[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+}
+
+// Service link text needs special handling (has child SVG)
+function applyServiceLinks(lang) {
+  const t = TRANSLATIONS[lang];
+  document.querySelectorAll('.service-link').forEach(btn => {
+    const svg = btn.querySelector('svg');
+    btn.textContent = t.svc_link;
+    if (svg) btn.appendChild(svg);
+  });
+}
+
+// Hero check items have SVG child
+function applyHeroChecks(lang) {
+  const t = TRANSLATIONS[lang];
+  [
+    ['.hero-check:nth-child(1)', 'hero_check1'],
+    ['.hero-check:nth-child(2)', 'hero_check2'],
+    ['.hero-check:nth-child(3)', 'hero_check3'],
+  ].forEach(([sel, key]) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    const svg = el.querySelector('svg');
+    el.textContent = t[key];
+    if (svg) el.prepend(svg);
+  });
+}
+
+// Hero buttons have SVG child
+function applyHeroBtns(lang) {
+  const t = TRANSLATIONS[lang];
+  const btn1 = document.querySelector('.hero-actions-bottom .btn-primary');
+  if (btn1) { const svg = btn1.querySelector('svg'); btn1.textContent = t.hero_btn1; if (svg) btn1.appendChild(svg); }
+  const btn2 = document.querySelector('.hero-actions-bottom .btn-ghost');
+  if (btn2) btn2.textContent = t.hero_btn2;
+}
+
+// Reviews (selector-based, 7 items, cloned so first 7 only)
+function applyReviews(lang) {
+  const t = TRANSLATIONS[lang];
+  const cards = document.querySelectorAll('#reviews .reviews-track .review-card');
+  const perLang = [
+    { txt:'rev1_text', name:'rev1_name', car:'rev1_car' },
+    { txt:'rev2_text', name:'rev2_name', car:'rev2_car' },
+    { txt:'rev3_text', name:'rev3_name', car:'rev3_car' },
+    { txt:'rev4_text', name:'rev4_name', car:'rev4_car' },
+    { txt:'rev5_text', name:'rev5_name', car:'rev5_car' },
+    { txt:'rev6_text', name:'rev6_name', car:'rev6_car' },
+    { txt:'rev7_text', name:'rev7_name', car:'rev7_car' },
+  ];
+  cards.forEach((card, i) => {
+    const d = perLang[i % 7];
+    const textEl = card.querySelector('.review-text');
+    const nameEl = card.querySelector('.review-name');
+    const carEl  = card.querySelector('.review-car');
+    if (textEl) textEl.textContent = t[d.txt];
+    if (nameEl) nameEl.textContent = t[d.name];
+    if (carEl)  carEl.textContent  = t[d.car];
+  });
+}
+
+// Form placeholders & labels
+function applyForms(lang) {
+  const t = TRANSLATIONS[lang];
+  const pairs = [
+    ['#mainForm input[type=text]', 'form_name_ph'],
+    ['#mainForm input[type=tel]',  'form_tel_ph'],
+    ['#mainForm input[type=text]:nth-of-type(2)', 'form_car_ph'],
+  ];
+  const mainInputs = document.querySelectorAll('#mainForm input');
+  if (mainInputs[0]) mainInputs[0].placeholder = t.form_name_ph;
+  if (mainInputs[1]) mainInputs[1].placeholder = t.form_tel_ph;
+  if (mainInputs[2]) mainInputs[2].placeholder = t.form_car_ph;
+  const mainLabels = document.querySelectorAll('#mainForm label');
+  if (mainLabels[0]) mainLabels[0].textContent = t.form_name_lbl;
+  if (mainLabels[1]) mainLabels[1].textContent = t.form_tel_lbl;
+  if (mainLabels[2]) mainLabels[2].textContent = t.form_car_lbl;
+  const popInputs = document.querySelectorAll('#popup input');
+  if (popInputs[0]) popInputs[0].placeholder = t.pop_name_ph;
+  if (popInputs[1]) popInputs[1].placeholder = t.pop_tel_ph;
+  const popLabels = document.querySelectorAll('#popup label');
+  if (popLabels[0]) popLabels[0].textContent = t.pop_name_lbl;
+  if (popLabels[1]) popLabels[1].textContent = t.pop_tel_lbl;
+  // Calc labels
+  const calcSectionLabels = document.querySelectorAll('.calc-section-label');
+  if (calcSectionLabels[0]) calcSectionLabels[0].textContent = t.calc_class_lbl;
+  if (calcSectionLabels[1]) calcSectionLabels[1].textContent = t.calc_svc_lbl;
+  if (calcSectionLabels[2]) calcSectionLabels[2].textContent = t.calc_cond_lbl;
+  const calcResultLabel = document.querySelector('.calc-result-label');
+  if (calcResultLabel) calcResultLabel.textContent = t.calc_res_lbl;
+  // Calc option buttons
+  const calcClassBtns = document.querySelectorAll('#calcClass .calc-opt');
+  if (calcClassBtns[0]) calcClassBtns[0].textContent = t.class_sedan;
+  if (calcClassBtns[1]) calcClassBtns[1].textContent = t.class_suv;
+  if (calcClassBtns[2]) calcClassBtns[2].textContent = t.class_van;
+  if (calcClassBtns[3]) calcClassBtns[3].textContent = t.class_premium;
+  const calcCondBtns = document.querySelectorAll('#calcCondition .calc-opt');
+  if (calcCondBtns[0]) calcCondBtns[0].textContent = t.cond_good;
+  if (calcCondBtns[1]) calcCondBtns[1].textContent = t.cond_scratches;
+  if (calcCondBtns[2]) calcCondBtns[2].textContent = t.cond_correction;
+  // Calc service buttons
+  const calcSvcBtns = document.querySelectorAll('#calcService .calc-opt');
+  if (calcSvcBtns[0]) calcSvcBtns[0].textContent = t.svc1_t;
+  if (calcSvcBtns[1]) calcSvcBtns[1].textContent = t.svc2_t;
+  if (calcSvcBtns[2]) calcSvcBtns[2].textContent = t.svc3_t;
+  if (calcSvcBtns[3]) calcSvcBtns[3].textContent = t.svc4_t;
+  if (calcSvcBtns[4]) calcSvcBtns[4].textContent = t.svc5_t;
+  if (calcSvcBtns[5]) calcSvcBtns[5].textContent = t.svc6_t;
+  // form note
+  const formNote = document.querySelector('#mainForm + p.form-note, .form-note');
+  document.querySelectorAll('.form-note').forEach((el, i) => {
+    el.textContent = i === 0 ? t.form_note : t.pop_note;
+  });
+  const popNoteEl = document.querySelector('#popup .form-note');
+  if (popNoteEl) popNoteEl.textContent = t.pop_note;
+}
+
+// CTA list items
+function applyCtaList(lang) {
+  const t = TRANSLATIONS[lang];
+  const items = document.querySelectorAll('.cta-text > div > div');
+  const keys = ['cta_li1','cta_li2','cta_li3'];
+  items.forEach((item, i) => {
+    if (!keys[i]) return;
+    const svg = item.querySelector('svg');
+    item.textContent = t[keys[i]];
+    if (svg) item.prepend(svg);
+  });
+}
+
+// Nav mobile links
+function applyMobileNav(lang) {
+  const t = TRANSLATIONS[lang];
+  const links = document.querySelectorAll('.mobile-nav-links a');
+  if (links[0]) links[0].textContent = t.nav_about;
+  if (links[1]) links[1].textContent = t.nav_services;
+  if (links[2]) links[2].textContent = t.nav_portfolio;
+  if (links[3]) links[3].textContent = t.nav_reviews;
+}
+
+function switchLang(lang) {
+  if (currentLang === lang) return;
+  currentLang = lang;
+  // Update lang button states
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  const t = TRANSLATIONS[lang];
+  // Apply DOM_MAP entries
+  DOM_MAP.forEach(({ k, s, p, all }) => {
+    const val = t[k];
+    if (val === undefined) return;
+    const els = all ? document.querySelectorAll(s) : [document.querySelector(s)];
+    els.forEach(el => {
+      if (!el) return;
+      if (p === 'html') el.innerHTML = val;
+      else if (p === 'placeholder') el.placeholder = val;
+      else el.textContent = val;
+    });
+  });
+  // Special handlers
+  applyHeroChecks(lang);
+  applyHeroBtns(lang);
+  applyServiceLinks(lang);
+  applyReviews(lang);
+  applyForms(lang);
+  applyCtaList(lang);
+  applyMobileNav(lang);
+  applyDataI18n(lang);
+  // Update html lang attribute
+  document.documentElement.lang = lang === 'pl' ? 'pl' : 'uk';
+}
 </script>
 </body>
 </html>
