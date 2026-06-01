@@ -180,7 +180,7 @@ section { position: relative; }
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .hero-bg {
   position: absolute;
@@ -214,13 +214,13 @@ section { position: relative; }
   background: linear-gradient(to right, rgba(8,8,8,0.65) 0%, transparent 55%);
 }
 
-/* Main content block — left side, above stats */
+/* Main content — upper-left, vertically centered but shifted up */
 .hero-content {
   position: relative;
   z-index: 10;
-  padding: 0 60px 0 60px;
-  margin-bottom: 28px;
-  max-width: 680px;
+  padding: 0 60px;
+  max-width: 700px;
+  margin-top: -120px; /* shift up from true center */
 }
 .hero-eyebrow {
   display: inline-flex;
@@ -262,9 +262,9 @@ section { position: relative; }
 }
 .hero-checkmarks {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px 28px;
-  margin-bottom: 32px;
+  flex-wrap: nowrap;
+  gap: 28px;
+  margin-bottom: 0;
   opacity: 0;
   animation: fadeSlideUp 0.9s 0.85s var(--transition) forwards;
 }
@@ -279,10 +279,19 @@ section { position: relative; }
 }
 .hero-check svg { color: var(--gold); flex-shrink: 0; }
 .hero-actions {
+  display: none; /* moved to hero-actions-bottom */
+}
+
+/* Buttons — absolute bottom-center above stats */
+.hero-actions-bottom {
+  position: absolute;
+  bottom: 88px;
+  left: 0; right: 0;
+  z-index: 25;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
-  flex-wrap: wrap;
   opacity: 0;
   animation: fadeSlideUp 0.9s 1s var(--transition) forwards;
 }
@@ -1314,8 +1323,9 @@ footer {
   .container { padding: 0 32px; }
   nav { padding: 18px 32px; }
   .hero-content { padding: 0 32px; margin-bottom: 24px; }
-  .hero-bottom-cta { left: 32px; bottom: 88px; }
-  .hero-rating { right: 32px; bottom: 88px; }
+  .hero-content { padding: 0 32px; margin-top: -100px; }
+  .hero-actions-bottom { bottom: 88px; padding: 0 32px; }
+  .hero-rating { right: 32px; bottom: 160px; }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .process-layout { grid-template-columns: 1fr; gap: 60px; }
@@ -1332,8 +1342,9 @@ footer {
   .nav-links { display: none; }
   .nav-cta { padding: 10px 20px; font-size: 0.75rem; }
   .hero-content { padding: 0 20px; margin-bottom: 20px; }
-  .hero-bottom-cta { left: 20px; bottom: 80px; }
-  .hero-rating { right: 20px; bottom: 80px; padding: 14px 18px; min-width: 150px; }
+  .hero-content { padding: 0 20px; margin-top: -80px; }
+  .hero-actions-bottom { bottom: 40px; padding: 0 20px; gap: 12px; }
+  .hero-rating { right: 20px; bottom: 120px; padding: 14px 18px; min-width: 150px; }
   .hero-rating-score { font-size: 1.8rem; }
   .hero-stats { display: none; }
   #hero h1 { font-size: clamp(2rem, 9vw, 4rem); }
@@ -1369,8 +1380,11 @@ footer {
   .hero-check { font-size: 0.78rem; }
   .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
   .btn-primary, .btn-ghost { padding: 15px 28px; font-size: 0.78rem; text-align: center; justify-content: center; }
-  .hero-bottom-cta { left: 16px; bottom: 72px; }
-  .hero-rating { right: 16px; bottom: 72px; padding: 12px 16px; min-width: 130px; }
+  .hero-content { padding: 0 16px; margin-top: -60px; }
+  .hero-actions-bottom { bottom: 32px; padding: 0 16px; flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero-actions-bottom .btn-primary, .hero-actions-bottom .btn-ghost { justify-content: center; padding: 14px 24px; font-size: 0.78rem; }
+  .hero-rating { right: 16px; bottom: 110px; padding: 12px 16px; min-width: 130px; }
+  .hero-checkmarks { gap: 16px; flex-wrap: wrap; }
   .hero-rating-score { font-size: 1.6rem; }
   .hero-rating-label { font-size: 0.65rem; }
   .why-grid { grid-template-columns: 1fr; }
@@ -1449,13 +1463,15 @@ footer {
         Понад 1000 обслужених авто
       </div>
     </div>
-    <div class="hero-actions">
-      <a href="#cta" class="btn-primary">
-        Отримати консультацію
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="#services" class="btn-ghost">Дізнатися вартість</a>
-    </div>
+  </div>
+
+  <!-- CTA buttons — bottom-center -->
+  <div class="hero-actions-bottom">
+    <a href="#cta" class="btn-primary">
+      Отримати консультацію
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="#services" class="btn-ghost">Дізнатися вартість</a>
   </div>
 
   <!-- Floating rating — bottom-right -->
