@@ -1065,11 +1065,14 @@ section { position: relative; }
 .process-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 120px;
-  align-items: start;
+  gap: 100px;
+  align-items: stretch;
   margin-top: 80px;
 }
-.process-steps { display: flex; flex-direction: column; }
+.process-steps {
+  display: flex;
+  flex-direction: column;
+}
 .process-step {
   display: grid;
   grid-template-columns: 64px 1fr;
@@ -1080,7 +1083,7 @@ section { position: relative; }
   transition: background 0.3s;
 }
 .process-step:first-child { padding-top: 0; }
-.process-step:last-child { border-bottom: none; }
+.process-step:last-child { border-bottom: none; padding-bottom: 0; }
 .process-step-num {
   font-family: var(--font-display);
   font-size: 2.8rem;
@@ -1098,21 +1101,28 @@ section { position: relative; }
   margin-bottom: 10px;
 }
 .process-step p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; }
+
+/* Photo column — sticky, full height of steps */
+.process-visual-wrap {
+  position: relative;
+}
 .process-visual {
   position: sticky;
-  top: 120px;
-  aspect-ratio: 3/4;
+  top: 100px;
+  height: calc(100vh - 160px);
+  max-height: 900px;
   overflow: hidden;
 }
 .process-visual img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: brightness(0.75) saturate(0.8);
+  object-position: center 20%;
+  filter: brightness(0.8) saturate(0.85);
 }
 .process-visual-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(8,8,8,0.6) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(8,8,8,0.5) 0%, transparent 50%);
 }
 
 /* ============================================
@@ -1469,8 +1479,9 @@ footer {
   .hero-rating { right: 32px; bottom: 240px; }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .process-layout { grid-template-columns: 1fr; gap: 60px; }
-  .process-visual { position: static; aspect-ratio: 16/9; }
+  .process-layout { grid-template-columns: 1fr; gap: 48px; align-items: start; }
+  .process-visual-wrap { width: 100%; }
+  .process-visual { position: static; height: auto; aspect-ratio: 16/9; max-height: none; }
   .cta-content { grid-template-columns: 1fr; gap: 48px; padding: 100px 32px; }
   #why, #services, #portfolio, #process, #reviews { padding: 120px 0; }
 }
@@ -2015,9 +2026,11 @@ footer {
           </div>
         </div>
       </div>
-      <div class="process-visual reveal-right delay-2">
-        <img src="2.jpg" alt="Процес детейлінгу" loading="lazy">
-        <div class="process-visual-overlay"></div>
+      <div class="process-visual-wrap">
+        <div class="process-visual reveal-right delay-2">
+          <img src="2.jpg" alt="Процес детейлінгу" loading="lazy">
+          <div class="process-visual-overlay"></div>
+        </div>
       </div>
     </div>
   </div>
