@@ -7,7 +7,7 @@
 <meta name="description" content="DetailingExpert — преміальний детейлінг, який зберігає вигляд, цінність та відчуття нового автомобіля на роки. Кераміка, PPF, полірування, хімчистка. Понад 1000 задоволених клієнтів.">
 <meta property="og:title" content="DetailingExpert — Ваш автомобіль заслуговує виглядати як новий щодня">
 <meta property="og:description" content="Преміальний детейлінг, що захищає інвестицію та повертає автомобілю відчуття новизни на довгі роки.">
-<meta property="og:image" content="images/1.jpg">
+<meta property="og:image" content="hero.webp">
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,12 +41,12 @@
   --white: #ffffff;
   --off-white: #e8e6e1;
   --cream: #f0ede8;
-  --gold: #c8a96e;
-  --gold-light: #d4bc8a;
-  --gold-dark: #a8894e;
-  --text-primary: #f0ede8;
-  --text-secondary: rgba(240,237,232,0.55);
-  --text-muted: rgba(240,237,232,0.35);
+  --gold: #e02020;
+  --gold-light: #ff3333;
+  --gold-dark: #b01515;
+  --text-primary: #f5f5f5;
+  --text-secondary: rgba(245,245,245,0.55);
+  --text-muted: rgba(245,245,245,0.35);
   --glass: rgba(255,255,255,0.04);
   --glass-border: rgba(255,255,255,0.08);
   --glass-hover: rgba(255,255,255,0.07);
@@ -91,7 +91,7 @@ body {
   transition: width 0.5s var(--transition), height 0.5s var(--transition), border-color 0.3s;
 }
 body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 12px; height: 12px; }
-body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 56px; height: 56px; border-color: rgba(200,169,110,0.7); }
+body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 56px; height: 56px; border-color: rgba(224,32,32,0.7); }
 
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 2px; }
@@ -333,7 +333,7 @@ section { position: relative; }
   transition: transform 0.5s var(--transition);
 }
 .btn-primary:hover::after { transform: translateX(0); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(200,169,110,0.3); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(224,32,32,0.3); }
 
 .btn-ghost {
   display: inline-flex;
@@ -639,9 +639,9 @@ section { position: relative; }
   position: absolute;
   top: 16px; right: 16px;
   width: 36px; height: 36px;
-  background: rgba(200,169,110,0.15);
+  background: rgba(224,32,32,0.15);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(200,169,110,0.3);
+  border: 1px solid rgba(224,32,32,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -651,7 +651,7 @@ section { position: relative; }
   transition: opacity 0.3s, background 0.3s;
 }
 .portfolio-item:hover .portfolio-expand { opacity: 1; }
-.portfolio-expand:hover { background: rgba(200,169,110,0.25); }
+.portfolio-expand:hover { background: rgba(224,32,32,0.25); }
 
 /* MODAL */
 .modal-overlay {
@@ -811,7 +811,7 @@ section { position: relative; }
   font-family: var(--font-display);
   font-size: 8rem;
   font-weight: 300;
-  color: rgba(200,169,110,0.07);
+  color: rgba(224,32,32,0.07);
   line-height: 1;
   pointer-events: none;
 }
@@ -940,7 +940,7 @@ section { position: relative; }
 .form-group input::placeholder { color: var(--text-muted); }
 .form-group input:focus, .form-group select:focus {
   border-color: var(--gold);
-  background: rgba(200,169,110,0.04);
+  background: rgba(224,32,32,0.04);
 }
 .form-group select option { background: var(--card); color: var(--text-primary); }
 .form-submit {
@@ -969,7 +969,7 @@ section { position: relative; }
   transition: transform 0.5s var(--transition);
 }
 .form-submit:hover::after { transform: translateX(0); }
-.form-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(200,169,110,0.3); }
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(224,32,32,0.3); }
 .form-note {
   font-size: 0.72rem;
   color: var(--text-muted);
@@ -1106,43 +1106,92 @@ footer {
 /* ============================================
    RESPONSIVE
 ============================================ */
+/* ── TABLET ── */
 @media (max-width: 1200px) {
-  .container { padding: 0 40px; }
-  nav { padding: 18px 40px; }
-  .hero-content { padding: 0 40px; }
+  .container { padding: 0 32px; }
+  nav { padding: 18px 32px; }
+  .hero-content { padding: 0 32px; }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .process-layout { grid-template-columns: 1fr; gap: 60px; }
   .process-visual { position: static; aspect-ratio: 16/9; }
-  .cta-content { grid-template-columns: 1fr; gap: 60px; }
+  .cta-content { grid-template-columns: 1fr; gap: 48px; padding: 100px 32px; }
   .hero-stats { display: none; }
+  #why, #services, #portfolio, #process, #reviews { padding: 120px 0; }
 }
 
+/* ── MOBILE LANDSCAPE / LARGE PHONE ── */
 @media (max-width: 900px) {
-  .container { padding: 0 24px; }
-  nav { padding: 16px 24px; }
+  .container { padding: 0 20px; }
+  nav { padding: 14px 20px; }
+  nav.scrolled { padding: 12px 20px; }
   .nav-links { display: none; }
-  .hero-content { padding: 0 24px; }
-  #hero h1 { font-size: clamp(2.4rem, 8vw, 5rem); }
-  .hero-rating { right: 24px; bottom: 32px; }
+  .nav-cta { padding: 10px 20px; font-size: 0.75rem; }
+  .hero-content { padding: 0 20px; margin-top: 60px; }
+  #hero h1 { font-size: clamp(2rem, 9vw, 4rem); }
+  .hero-sub { font-size: 0.95rem; }
+  .hero-rating { right: 16px; bottom: 24px; padding: 14px 18px; min-width: 150px; }
+  .hero-rating-score { font-size: 1.8rem; }
   .services-grid { grid-template-columns: 1fr; }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-  .services-header { grid-template-columns: 1fr; gap: 24px; }
-  section { padding: 100px 0; }
-  #hero, #cta { padding: 0; }
-  .cta-content { padding: 80px 24px; }
-  footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+  .services-header { grid-template-columns: 1fr; gap: 20px; margin-bottom: 48px; }
+  #why, #services, #portfolio, #process, #reviews { padding: 80px 0; }
+  #cta { min-height: auto; }
+  .cta-content { padding: 72px 20px; gap: 40px; }
+  .cta-text h2 { font-size: clamp(2rem, 8vw, 3.5rem); }
+  .cta-text p { max-width: 100%; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-card { padding: 36px 28px; }
+  .process-step { grid-template-columns: 48px 1fr; gap: 20px; padding: 28px 0; }
+  .process-step-num { font-size: 2.2rem; }
+  footer { padding: 36px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer-links { flex-wrap: wrap; gap: 20px 32px; }
+  .review-card { width: 320px; padding: 32px 28px; }
 }
 
+/* ── MOBILE PORTRAIT ── */
 @media (max-width: 600px) {
+  .container { padding: 0 16px; }
+  nav { padding: 12px 16px; }
+  nav.scrolled { padding: 10px 16px; }
+  .nav-logo { font-size: 1.2rem; }
+  .hero-content { padding: 0 16px; margin-top: 40px; }
+  #hero h1 { font-size: clamp(1.85rem, 10vw, 3rem); line-height: 1.15; }
+  .hero-sub { font-size: 0.88rem; margin-bottom: 28px; }
+  .hero-eyebrow { font-size: 0.65rem; margin-bottom: 20px; }
+  .hero-checkmarks { flex-direction: column; gap: 10px; margin-bottom: 36px; }
+  .hero-check { font-size: 0.78rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+  .btn-primary, .btn-ghost { padding: 15px 28px; font-size: 0.78rem; text-align: center; justify-content: center; }
+  .hero-rating { right: 12px; bottom: 20px; padding: 12px 16px; min-width: 140px; }
+  .hero-rating-score { font-size: 1.6rem; }
+  .hero-rating-label { font-size: 0.65rem; }
   .why-grid { grid-template-columns: 1fr; }
+  .why-card { padding: 32px 24px; }
+  .why-icon { width: 44px; height: 44px; margin-bottom: 24px; }
+  h2 { font-size: clamp(1.75rem, 8vw, 2.6rem); }
+  .section-label { font-size: 0.65rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card-body { padding: 28px 24px; }
   .portfolio-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; align-items: flex-start; }
-  .hero-checkmarks { flex-direction: column; gap: 12px; }
-  h2 { font-size: clamp(2rem, 7vw, 3rem); }
-  .cta-form-wrap { padding: 36px 28px; }
-  .popup-card { padding: 44px 28px; }
-  .footer-links { flex-direction: column; gap: 16px; }
+  .portfolio-item-inner { aspect-ratio: 4/3; }
+  .process-layout { gap: 40px; }
+  .process-step { grid-template-columns: 40px 1fr; gap: 16px; padding: 24px 0; }
+  .process-step-num { font-size: 1.8rem; }
+  .process-step h3 { font-size: 1.1rem; }
+  .process-step p { font-size: 0.82rem; }
+  #why, #services, #portfolio, #process, #reviews { padding: 64px 0; }
+  .cta-content { padding: 64px 16px; }
+  .cta-form-wrap { padding: 32px 20px; }
+  .cta-form-title { font-size: 1.4rem; }
+  .form-submit { font-size: 0.75rem; padding: 15px 20px; }
+  .popup-card { padding: 40px 20px; }
+  .popup-title { font-size: 1.6rem; }
+  .footer-links { flex-direction: column; gap: 14px; }
+  .review-card { width: 280px; padding: 28px 24px; }
+  .modal-inner { width: calc(100% - 32px); }
+  .modal-close { top: -36px; font-size: 0.7rem; }
+  .modal-caption { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
 
 /* Magnetic button */
@@ -1172,7 +1221,7 @@ footer {
 ============================================ -->
 <section id="hero">
   <div class="hero-bg">
-    <img src="images/1.jpg" alt="Преміальний автомобіль після детейлінгу DetailingExpert" id="heroBg" loading="eager">
+    <img src="hero.webp" alt="Преміальний автомобіль після детейлінгу DetailingExpert" id="heroBg" loading="eager">
   </div>
   <div class="hero-gradient"></div>
   <div class="hero-gradient-left"></div>
@@ -1701,7 +1750,7 @@ footer {
 ============================================ -->
 <section id="cta">
   <div class="cta-bg">
-    <img src="images/1.jpg" alt="Преміальний автомобіль DetailingExpert" loading="lazy">
+    <img src="hero.webp" alt="Преміальний автомобіль DetailingExpert" loading="lazy">
   </div>
   <div class="cta-gradient"></div>
   <div class="cta-content">
